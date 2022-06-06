@@ -46,8 +46,8 @@ def create_save_game(hero_name):
 
         if (number_of_saves == 0):
             save_games_info.seek(0)
-            save_games_info.write('1')
-            save_games_info.write(f'\n{hero_name}\n')
+            save_games_info.write('1\n')
+            save_games_info.write(f'{hero_name}\n')
         else:
             number_of_saves += 1
             save_games_info.seek(0)
@@ -66,7 +66,55 @@ def create_new_game():
     create_save_game(hero_name)
     creating_new_game_animation()
 
-# TODO: finish check_saved_games function
+
+def remove_newline(name):
+    correct_name = ''
+
+    for letter in name:
+        if letter != '\n':
+            correct_name += letter
+        else:
+            break
+
+    return correct_name
+
+
+def show_saved_games_on_screen(saves):
+    clear_screen()
+    print('X', '-'*26, 'X', '\n')
+    print(' '*7, 'Jogos Salvos', '\n')
+    print('X', '-'*26, 'X', '\n')
+
+    count = 1
+    for save in saves:
+        print(f'[{count}] ' + save)
+        count += 1
+
+
+def show_no_saved_games_warning():
+    print('\nNão há salvamentos de jogos!\nVoltando ao menu...')
+    sleep(2)
+
+    draw_menu_options()
+
+
+def wait():
+    input('waiting')
+
+# FIXME: função não casa em que caractére não é um número
+
+
+def get_user_save_game_choice(saves):
+    max_choice = len(saves)-1
+    min_choice = 0
+    save_choice = int(
+        input('\nQual jogo que deseja carregar? (Digite o número apenas): ')) - 1
+
+    if (save_choice < min_choice or save_choice > max_choice):
+        invalid_option()
+        return None
+
+    return saves[save_choice]
 
 
 def check_saved_games():
@@ -76,10 +124,14 @@ def check_saved_games():
         if (number_of_saves != 0):
             saves = save_games_info.readlines()
             saves.pop(0)
-            save_games_info.seek(0)
+            mapped_saves = list(map(remove_newline, saves))
 
-            for save in saves:
-                print(save)
+            show_saved_games_on_screen(mapped_saves)
+            return get_user_save_game_choice(mapped_saves)
+        else:
+            show_no_saved_games_warning()
+
+# TODO: finish load_game function
 
 
 def load_game(game_save):
@@ -90,8 +142,8 @@ def process_option(option):
     if (option == '1'):
         create_new_game()
     elif (option == '2'):
-        check_saved_games()
-        # load_game()
+        save_to_load = check_saved_games()
+        load_game(save_to_load)
     elif (option == '3'):
         pass
     else:
