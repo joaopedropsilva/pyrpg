@@ -1,6 +1,6 @@
 # Animations
 
-DEFAULT_ANIMATION_SPEED = 0.06
+DEFAULT_ANIMATION_SPEED = 0.04
 
 # Hero
 
