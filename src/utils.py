@@ -33,13 +33,20 @@ def ask_for_hero_name():
 
 
 def create_save_game(hero_name):
-    hash_save = str(hash(hero_name))
-    save_game_file_name = './saves/save_' + \
-        '(' + hero_name + ')' + hash_save + '.txt'
+    save_game_file_name = './saves/save_' + hero_name + '.txt'
 
-    with open(save_game_file_name, 'x') as save:
-        save.write(
-            f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_DEFENSE}\n{DEFAULT_HERO_ATK}')
+    try:
+        with open(save_game_file_name, 'x') as save:
+            save.write(
+                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_DEFENSE}\n{DEFAULT_HERO_ATK}')
+    except FileExistsError:
+        print(
+            '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!')
+        print('Voltando o menu principal...')
+        sleep(2)
+
+        draw_menu_options()
+        return
 
     with open('./src/structures/save_games_info.txt', 'r+') as save_games_info:
         number_of_saves = int(save_games_info.read(1))
@@ -97,9 +104,6 @@ def show_no_saved_games_warning():
 
     draw_menu_options()
 
-
-def wait():
-    input('waiting')
 
 # FIXME: função não casa em que caractére não é um número
 
