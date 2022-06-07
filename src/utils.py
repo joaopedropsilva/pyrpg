@@ -1,4 +1,5 @@
 from os import system
+from sqlite3 import SQLITE_CREATE_TEMP_VIEW
 from time import sleep
 from typing import Type
 
@@ -39,7 +40,7 @@ def create_save_game(hero_name):
     try:
         with open(save_game_file_name, 'x') as save:
             save.write(
-                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_DEFENSE}\n{DEFAULT_HERO_ATK}')
+                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_DEFENSE}\n{DEFAULT_HERO_ATK}\nlvl_1')
     except FileExistsError:
         print(
             '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!')
@@ -139,11 +140,15 @@ def check_saved_games():
         else:
             show_no_saved_games_warning()
 
-# TODO: finish load_game function
-
 
 def load_game(game_save):
+    save_game_file_name = './saves/save_' + str(game_save) + '.txt'
+    with open(save_game_file_name, 'r') as save:
+        raw_save_to_load_info = save.readlines()
+        save_to_load_info = list(map(remove_newline, raw_save_to_load_info))
+
     loading_game_animation()
+    return save_to_load_info
 
 
 def process_option(option):
@@ -151,7 +156,9 @@ def process_option(option):
         create_new_game()
     elif (option == '2'):
         save_to_load = check_saved_games()
-        load_game(save_to_load)
+        if (save_to_load is None):
+            return
+        game_info_loaded = load_game(save_to_load)
     elif (option == '3'):
         pass
     else:
