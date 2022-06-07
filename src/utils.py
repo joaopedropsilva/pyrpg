@@ -1,5 +1,6 @@
 from os import system
 from time import sleep
+from typing import Type
 
 from structures.game_constants import (DEFAULT_HERO_HP,
                                        DEFAULT_HERO_DEFENSE,
@@ -42,7 +43,7 @@ def create_save_game(hero_name):
     except FileExistsError:
         print(
             '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!')
-        print('Voltando o menu principal...')
+        print('Voltando ao menu principal...')
         sleep(2)
 
         draw_menu_options()
@@ -105,20 +106,23 @@ def show_no_saved_games_warning():
     draw_menu_options()
 
 
-# FIXME: função não casa em que caractére não é um número
-
-
 def get_user_save_game_choice(saves):
-    max_choice = len(saves)-1
-    min_choice = 0
-    save_choice = int(
-        input('\nQual jogo que deseja carregar? (Digite o número apenas): ')) - 1
+    try:
+        max_choice = len(saves)-1
+        min_choice = 0
+        save_choice = int(
+            input('\nQual jogo que deseja carregar? (Digite o número apenas): ')) - 1
 
-    if (save_choice < min_choice or save_choice > max_choice):
-        invalid_option()
+        if (save_choice < min_choice or save_choice > max_choice):
+            invalid_option()
+            return None
+
+        return saves[save_choice]
+    except ValueError:
+        print('\nDigite um número apenas!\nVoltando ao menu principal...')
+        sleep(2)
+        draw_menu_options()
         return None
-
-    return saves[save_choice]
 
 
 def check_saved_games():
