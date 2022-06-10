@@ -151,6 +151,11 @@ def load_game(game_save):
     return save_to_load_info
 
 
+def exit_message():
+    print('\nSaindo do jogo!')
+    sleep(1)
+
+
 def process_option(option):
     if (option == '1'):
         create_new_game()
@@ -160,7 +165,8 @@ def process_option(option):
             return
         game_info_loaded = load_game(save_to_load)
     elif (option == '3'):
-        pass
+        exit_message()
+        exit()
     else:
         invalid_option()
 
