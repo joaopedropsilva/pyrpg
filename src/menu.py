@@ -71,6 +71,21 @@ def create_new_game():
     creating_new_game_animation()
 
 
+def get_saves_from_save_games_info(save_format='standard'):
+    with open('./src/structures/save_games_info.txt', 'r') as save_games_info:
+        saves = save_games_info.readlines()
+
+        if (save_format == 'standard'):
+            saves.pop(0)
+        elif (save_format == 'full'):
+            pass
+        else:
+            raise Exception('[Error] Specify argument: full or standard only!')
+
+        saves = list(map(remove_newline, saves))
+    return saves
+
+
 def show_saved_games_on_screen(saves):
     clear_screen()
     print('X', '-'*26, 'X', '\n')
@@ -110,18 +125,17 @@ def get_user_save_game_choice(saves):
 
 
 def check_saved_games():
-    with open('./src/structures/save_games_info.txt', 'r+') as save_games_info:
-        number_of_saves = int(save_games_info.read(1))
+    saves = get_saves_from_save_games_info('full')
 
-        if (number_of_saves != 0):
-            saves = save_games_info.readlines()
-            saves.pop(0)
-            mapped_saves = list(map(remove_newline, saves))
+    number_of_saves = int(saves[0])
 
-            show_saved_games_on_screen(mapped_saves)
-            return get_user_save_game_choice(mapped_saves)
-        else:
-            show_no_saved_games_warning()
+    if (number_of_saves != 0):
+        saves.pop(0)
+
+        show_saved_games_on_screen(saves)
+        return get_user_save_game_choice(saves)
+    else:
+        show_no_saved_games_warning()
 
 
 def load_game(game_save):
@@ -132,6 +146,34 @@ def load_game(game_save):
 
     loading_game_animation()
     return save_to_load_info
+
+
+def get_delete_choice():
+    saves = get_saves_from_save_games_info()
+
+    max_choice = len(saves)-1
+    min_choice = 0
+
+    try:
+        delete_choice = int(
+            input('\nQual jogo que deseja deletar? (Digite o número apenas): ')) - 1
+
+        if (delete_choice < min_choice or delete_choice > max_choice):
+            invalid_option()
+            return None
+
+        return delete_choice
+    except ValueError:
+        print('\nDigite um número apenas!\nVoltando ao menu principal...')
+        sleep(2)
+        draw_menu_options()
+        return None
+
+
+# TODO: finish delete_save
+
+def delete_save(delete_choice):
+    pass
 
 
 def exit_message():
@@ -148,6 +190,11 @@ def process_option(option):
             return
         game_info_loaded = load_game(save_to_load)
     elif (option == '3'):
+        show_saved_games_on_screen(get_saves_from_save_games_info())
+        delete_choice = get_delete_choice()
+
+        delete_save(delete_choice)
+    elif (option == '4'):
         exit_message()
         exit()
     else:
@@ -176,7 +223,8 @@ def draw_menu_options():
     print('''
     [1] Novo Jogo
     [2] Carregar Jogo
-    [3] Sair
+    [3] Deletar um Jogo Salvo
+    [4] Sair
     ''')
     print('X', '-'*26, 'X', '\n')
 
@@ -187,3 +235,7 @@ def draw_menu_options():
 
 draw_home_screen()
 draw_menu_options()
+
+
+# FIXME: possível erro: caso o save ou o delete não ocorra talvez
+# a função esteja recebendo None como argumento
