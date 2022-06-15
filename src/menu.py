@@ -1,4 +1,5 @@
 from time import sleep
+from os import path, remove
 
 from structures.game_constants import (DEFAULT_HERO_HP,
                                        DEFAULT_HERO_DEFENSE,
@@ -136,6 +137,7 @@ def check_saved_games():
         return get_user_save_game_choice(saves)
     else:
         show_no_saved_games_warning()
+        return None
 
 
 def load_game(game_save):
@@ -162,7 +164,7 @@ def get_delete_choice():
             invalid_option()
             return None
 
-        return delete_choice
+        return saves[delete_choice]
     except ValueError:
         print('\nDigite um número apenas!\nVoltando ao menu principal...')
         sleep(2)
@@ -170,10 +172,35 @@ def get_delete_choice():
         return None
 
 
-# TODO: finish delete_save
+def delete_save_from_save_games_info(delete_choice):
+    saves = get_saves_from_save_games_info('full')
+    new_number_of_saves = int(saves[0]) - 1
+    saves.pop(0)
+
+    saves.insert(0, str(new_number_of_saves))
+
+    with open('./src/structures/save_games_info.txt', 'w') as save_games_info:
+        if (saves[0] == '0\n'):
+            save_games_info.write('0\n')
+            return
+
+        for save in saves:
+            if save != delete_choice:
+                save_games_info.write(save + '\n')
+
 
 def delete_save(delete_choice):
-    pass
+    delete_save_from_save_games_info(delete_choice)
+
+    file_path = './saves/save_' + str(delete_choice) + '.txt'
+
+    if (path.exists(file_path)):
+        remove(file_path)
+    else:
+        print('\nArquivo de save não encontrado!\nVoltando ao menu principal...')
+        sleep(2)
+        draw_menu_options()
+        return
 
 
 def exit_message():
@@ -190,7 +217,15 @@ def process_option(option):
             return
         game_info_loaded = load_game(save_to_load)
     elif (option == '3'):
-        show_saved_games_on_screen(get_saves_from_save_games_info())
+        saves = get_saves_from_save_games_info('full')
+
+        if (saves[0] == '0'):
+            show_no_saved_games_warning()
+            return
+        else:
+            saves.pop(0)
+            show_saved_games_on_screen(saves)
+
         delete_choice = get_delete_choice()
 
         delete_save(delete_choice)
@@ -199,6 +234,7 @@ def process_option(option):
         exit()
     else:
         invalid_option()
+        return
 
 
 def draw_home_screen():
