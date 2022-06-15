@@ -1,4 +1,4 @@
-# pyRPG
+# pyRPG v1
 
 ## Estrutura
 
