@@ -36,7 +36,7 @@ def create_save_game(hero_name):
     try:
         with open(save_game_file_name, 'x') as save:
             save.write(
-                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_DEFENSE}\n{DEFAULT_HERO_ATK}\nlvl_1')
+                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\nlvl_1')
     except FileExistsError:
         print(
             '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!')
@@ -211,11 +211,12 @@ def exit_message():
 def process_option(option):
     if (option == '1'):
         create_new_game()
+        return
     elif (option == '2'):
         save_to_load = check_saved_games()
         if (save_to_load is None):
             return
-        game_info_loaded = load_game(save_to_load)
+        return load_game(save_to_load)
     elif (option == '3'):
         saves = get_saves_from_save_games_info('full')
 
@@ -229,9 +230,10 @@ def process_option(option):
         delete_choice = get_delete_choice()
 
         delete_save(delete_choice)
+        return
     elif (option == '4'):
         exit_message()
-        exit()
+        return False
     else:
         invalid_option()
         return
@@ -263,14 +265,6 @@ def draw_menu_options():
     [4] Sair
     ''')
     print('X', '-'*26, 'X', '\n')
-
-    process_option(str(input('Digite sua opção: ')))
-
-
-# TEST ONLY
-
-draw_home_screen()
-draw_menu_options()
 
 
 # FIXME: possível erro: caso o save ou o delete não ocorra talvez
