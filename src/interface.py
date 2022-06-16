@@ -1,7 +1,7 @@
 from utils import clear_screen
 
 
-def init_interface_file(save_info_loaded):
+def open_save_info_as_array(save_info_loaded):
     pass
 
 
@@ -16,6 +16,3 @@ def draw_top_level_bar():
     print(
         ' '*2, f'| {hero_name} | HP: {hero_hp} | ATK: {hero_atk} | DEF: {hero_def}')
     print('X', '-'*50, 'X', '\n')
-
-
-draw_top_level_bar()
