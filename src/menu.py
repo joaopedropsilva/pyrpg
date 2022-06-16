@@ -1,5 +1,6 @@
 from time import sleep
 from os import path, remove
+from interface import init_interface_file
 
 from structures.game_constants import (DEFAULT_HERO_HP,
                                        DEFAULT_HERO_DEFENSE,
@@ -36,7 +37,7 @@ def create_save_game(hero_name):
     try:
         with open(save_game_file_name, 'x') as save:
             save.write(
-                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_DEFENSE}\n{DEFAULT_HERO_ATK}\nlvl_1')
+                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\nlvl_1')
     except FileExistsError:
         print(
             '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!')
@@ -215,7 +216,7 @@ def process_option(option):
         save_to_load = check_saved_games()
         if (save_to_load is None):
             return
-        game_info_loaded = load_game(save_to_load)
+        init_interface_file(load_game(save_to_load))
     elif (option == '3'):
         saves = get_saves_from_save_games_info('full')
 
