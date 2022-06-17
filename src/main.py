@@ -16,10 +16,10 @@ def main():
 
         if (user_option == '1' and process_return == 'create_game'):  # create new game
             pass
-        elif (user_option == '2' and process_return != None):
+        elif (user_option == '2' and process_return != None):  # load game
             interf.open_level_file(
                 interf.get_player_level_from_save(process_return))
-        elif (user_option == '3' and process_return == 'delete_complete'):
+        elif (user_option == '3' and process_return == 'delete_complete'):  # delete save
             pass
 
 

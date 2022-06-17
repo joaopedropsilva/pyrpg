@@ -9,14 +9,30 @@ from animations import timed_writing_animation
 from utils import clear_screen, remove_newline
 
 
-# TODO: extend function to several flows, error flows and any invalid options
-
-def invalid_option():
+def invalid_option(flag=''):
     clear_screen()
     print('X', '-'*26, 'X', '\n')
     print(' '*7, 'Opção Inválida!', '\n')
     print('X', '-'*26, 'X', '\n')
+
+    if (flag == 'create_save_game_fail'):
+        print(
+            '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!\nVoltando ao menu...')
+    elif (flag == 'no_saves_fail'):
+        print('\nNão há salvamentos de jogos!\nVoltando ao menu...')
+    elif (flag == 'invalid_input'):
+        print('\nDigite uma opção válida!\nVoltando ao menu...')
+
     sleep(2)
+
+
+def exit_message():
+    clear_screen()
+    print('X', '-'*26, 'X', '\n')
+    print(' '*11, 'pyRPG', '\n')
+    print('X', '-'*26, 'X', '\n')
+
+    sleep(1)
 
 
 def ask_for_hero_name():
@@ -35,11 +51,7 @@ def create_save_game(hero_name):
             save.write(
                 f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\nlvl_0')
     except FileExistsError:
-        print(
-            '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!')
-        print('Voltando ao menu principal...')
-        sleep(2)
-
+        invalid_option('create_save_game_fail')
         return None
 
     with open('./src/structures/save_games_info.txt', 'r+') as save_games_info:
@@ -96,8 +108,7 @@ def show_saved_games_on_screen(saves):
 
 
 def show_no_saved_games_warning():
-    print('\nNão há salvamentos de jogos!\nVoltando ao menu...')
-    sleep(2)
+    invalid_option('no_saves_fail')
 
 
 def get_user_save_game_choice(saves):
@@ -108,13 +119,12 @@ def get_user_save_game_choice(saves):
             input('\nQual jogo que deseja carregar? (Digite o número apenas): ')) - 1
 
         if (save_choice < min_choice or save_choice > max_choice):
-            invalid_option()
+            invalid_option('invalid_input')
             return None
 
         return saves[save_choice]
     except ValueError:
-        print('\nDigite um número apenas!\nVoltando ao menu principal...')
-        sleep(2)
+        invalid_option('invalid_input')
         return None
 
 
@@ -153,16 +163,13 @@ def get_delete_choice():
             input('\nQual jogo que deseja deletar? (Digite o número apenas): ')) - 1
 
         if (delete_choice < min_choice or delete_choice > max_choice):
-            invalid_option()
+            invalid_option('invalid_input')
             return None
 
         return saves[delete_choice]
     except ValueError:
-        print('\nDigite um número apenas!\nVoltando ao menu principal...')
-        sleep(2)
+        invalid_option('invalid_input')
         return None
-
-# FIXME: check function procedure, maybe it's doing work not needed
 
 
 def delete_save_from_save_games_info(delete_choice):
@@ -189,11 +196,6 @@ def delete_save(delete_choice):
         delete_save_from_save_games_info(delete_choice)
         remove(file_path)
         return 'delete_complete'
-
-
-def exit_message():
-    print('\nSaindo do jogo!')
-    sleep(1)
 
 
 def process_option(option):
