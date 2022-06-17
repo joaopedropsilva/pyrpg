@@ -9,7 +9,13 @@ from animations import timed_writing_animation
 from utils import clear_screen, remove_newline
 
 
-def invalid_option(flag=''):
+def draw_pyrpg_logo():
+    print('X', '-'*26, 'X', '\n')
+    print(' '*11, 'pyRPG', '\n')
+    print('X', '-'*26, 'X', '\n')
+
+
+def invalid_option_message(flag=''):
     clear_screen()
     print('X', '-'*26, 'X', '\n')
     print(' '*7, 'Opção Inválida!', '\n')
@@ -26,20 +32,25 @@ def invalid_option(flag=''):
     sleep(2)
 
 
+def delete_message(delete_choice):
+    clear_screen()
+    draw_pyrpg_logo()
+    print(
+        f'\nO save "{delete_choice}" foi deletado com sucesso!\nVoltando ao menu...')
+
+    sleep(2)
+
+
 def exit_message():
     clear_screen()
-    print('X', '-'*26, 'X', '\n')
-    print(' '*11, 'pyRPG', '\n')
-    print('X', '-'*26, 'X', '\n')
+    draw_pyrpg_logo()
 
     sleep(1)
 
 
 def ask_for_hero_name():
     clear_screen()
-    print('X', '-'*26, 'X', '\n')
-    print(' '*11, 'pyRPG', '\n')
-    print('X', '-'*26, 'X', '\n')
+    draw_pyrpg_logo()
     return str(input('Qual é o nome do seu herói: '))
 
 
@@ -51,7 +62,7 @@ def create_save_game(hero_name):
             save.write(
                 f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\nlvl_0')
     except FileExistsError:
-        invalid_option('create_save_game_fail')
+        invalid_option_message('create_save_game_fail')
         return None
 
     with open('./src/structures/save_games_info.txt', 'r+') as save_games_info:
@@ -108,7 +119,7 @@ def show_saved_games_on_screen(saves):
 
 
 def show_no_saved_games_warning():
-    invalid_option('no_saves_fail')
+    invalid_option_message('no_saves_fail')
 
 
 def get_user_save_game_choice(saves):
@@ -119,12 +130,12 @@ def get_user_save_game_choice(saves):
             input('\nQual jogo que deseja carregar? (Digite o número apenas): ')) - 1
 
         if (save_choice < min_choice or save_choice > max_choice):
-            invalid_option('invalid_input')
+            invalid_option_message('invalid_input')
             return None
 
         return saves[save_choice]
     except ValueError:
-        invalid_option('invalid_input')
+        invalid_option_message('invalid_input')
         return None
 
 
@@ -163,12 +174,12 @@ def get_delete_choice():
             input('\nQual jogo que deseja deletar? (Digite o número apenas): ')) - 1
 
         if (delete_choice < min_choice or delete_choice > max_choice):
-            invalid_option('invalid_input')
+            invalid_option_message('invalid_input')
             return None
 
         return saves[delete_choice]
     except ValueError:
-        invalid_option('invalid_input')
+        invalid_option_message('invalid_input')
         return None
 
 
@@ -195,7 +206,7 @@ def delete_save(delete_choice):
     if (path.exists(file_path)):
         delete_save_from_save_games_info(delete_choice)
         remove(file_path)
-        return 'delete_complete'
+        return
 
 
 def process_option(option):
@@ -218,12 +229,13 @@ def process_option(option):
 
         delete_choice = get_delete_choice()
 
-        return delete_save(delete_choice)
+        delete_save(delete_choice)
+        delete_message(delete_choice)
     elif (option == '4'):
         exit_message()
         return False
     else:
-        invalid_option()
+        invalid_option_message()
         return
 
 
