@@ -4,13 +4,12 @@ from os import path, remove
 from structures.game_constants import (DEFAULT_HERO_HP,
                                        DEFAULT_HERO_DEFENSE,
                                        DEFAULT_HERO_ATK)
-from animations import (timed_writing_animation,
-                        menu_transfer_animation,
-                        creating_new_game_animation,
-                        loading_game_animation)
+from animations import timed_writing_animation
 
 from utils import clear_screen, remove_newline
 
+
+# TODO: extend function to several flows, error flows and any invalid options
 
 def invalid_option():
     clear_screen()
@@ -18,8 +17,6 @@ def invalid_option():
     print(' '*7, 'Opção Inválida!', '\n')
     print('X', '-'*26, 'X', '\n')
     sleep(2)
-
-    draw_menu_options()
 
 
 def ask_for_hero_name():
@@ -36,15 +33,14 @@ def create_save_game(hero_name):
     try:
         with open(save_game_file_name, 'x') as save:
             save.write(
-                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\nlvl_1')
+                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\nlvl_0')
     except FileExistsError:
         print(
             '\nUm herói com este nome já foi criado.\nPor favor escolha outro nome!')
         print('Voltando ao menu principal...')
         sleep(2)
 
-        draw_menu_options()
-        return
+        return None
 
     with open('./src/structures/save_games_info.txt', 'r+') as save_games_info:
         number_of_saves = int(save_games_info.read(1))
@@ -63,13 +59,13 @@ def create_save_game(hero_name):
             saves.append(f'{hero_name}\n')
             save_games_info.seek(0, 2)
             save_games_info.write(f'{hero_name}\n')
+    return 'create_game'
 
 
-def create_new_game():
+def create_new_game():  # returns None if process failed or 'create_game' if it worked
     hero_name = ask_for_hero_name()
 
-    create_save_game(hero_name)
-    creating_new_game_animation()
+    return create_save_game(hero_name)
 
 
 def get_saves_from_save_games_info(save_format='standard'):
@@ -103,8 +99,6 @@ def show_no_saved_games_warning():
     print('\nNão há salvamentos de jogos!\nVoltando ao menu...')
     sleep(2)
 
-    draw_menu_options()
-
 
 def get_user_save_game_choice(saves):
     try:
@@ -121,7 +115,6 @@ def get_user_save_game_choice(saves):
     except ValueError:
         print('\nDigite um número apenas!\nVoltando ao menu principal...')
         sleep(2)
-        draw_menu_options()
         return None
 
 
@@ -146,7 +139,6 @@ def load_game(game_save):
         raw_save_to_load_info = save.readlines()
         save_to_load_info = list(map(remove_newline, raw_save_to_load_info))
 
-    loading_game_animation()
     return save_to_load_info
 
 
@@ -168,8 +160,9 @@ def get_delete_choice():
     except ValueError:
         print('\nDigite um número apenas!\nVoltando ao menu principal...')
         sleep(2)
-        draw_menu_options()
         return None
+
+# FIXME: check function procedure, maybe it's doing work not needed
 
 
 def delete_save_from_save_games_info(delete_choice):
@@ -190,17 +183,12 @@ def delete_save_from_save_games_info(delete_choice):
 
 
 def delete_save(delete_choice):
-    delete_save_from_save_games_info(delete_choice)
-
     file_path = './saves/save_' + str(delete_choice) + '.txt'
 
     if (path.exists(file_path)):
+        delete_save_from_save_games_info(delete_choice)
         remove(file_path)
-    else:
-        print('\nArquivo de save não encontrado!\nVoltando ao menu principal...')
-        sleep(2)
-        draw_menu_options()
-        return
+        return 'delete_complete'
 
 
 def exit_message():
@@ -210,27 +198,25 @@ def exit_message():
 
 def process_option(option):
     if (option == '1'):
-        create_new_game()
-        return
+        return create_new_game()
     elif (option == '2'):
         save_to_load = check_saved_games()
         if (save_to_load is None):
-            return
+            return None
         return load_game(save_to_load)
     elif (option == '3'):
         saves = get_saves_from_save_games_info('full')
 
         if (saves[0] == '0'):
             show_no_saved_games_warning()
-            return
+            return None
         else:
             saves.pop(0)
             show_saved_games_on_screen(saves)
 
         delete_choice = get_delete_choice()
 
-        delete_save(delete_choice)
-        return
+        return delete_save(delete_choice)
     elif (option == '4'):
         exit_message()
         return False
@@ -251,7 +237,6 @@ def draw_home_screen():
     print('!'*3, ' '*18, '!'*3, '\n')
     timed_writing_animation('Press any key to start...')
     input()
-    menu_transfer_animation()
 
 
 def draw_menu_options():
@@ -265,7 +250,3 @@ def draw_menu_options():
     [4] Sair
     ''')
     print('X', '-'*26, 'X', '\n')
-
-
-# FIXME: possível erro: caso o save ou o delete não ocorra talvez
-# a função esteja recebendo None como argumento
