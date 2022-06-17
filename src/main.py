@@ -1,7 +1,6 @@
 import menu
-import interface
-import utils
-import animations
+import interface as interf
+import animations as anm
 
 
 def main():
@@ -9,14 +8,19 @@ def main():
 
     while True:
         menu.draw_menu_options()
-        process_return = menu.process_option(
-            str(input('Digite sua opção: ')))
+        user_option = str(input('Digite sua opção: '))
+        process_return = menu.process_option(user_option)
 
         if(process_return is False):  # quit game
             break
-        # TODO: terminar o if, o que acontece com os outros processos
 
-    print(process_return)
+        if (user_option == '1' and process_return == 'create_game'):  # create new game
+            pass
+        elif (user_option == '2' and process_return != None):
+            interf.open_level_file(
+                interf.get_player_level_from_save(process_return))
+        elif (user_option == '3' and process_return == 'delete_complete'):
+            pass
 
 
 if __name__ == '__main__':

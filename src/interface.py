@@ -1,12 +1,15 @@
 from utils import clear_screen
 
 
-def open_save_info_as_array(save_info_loaded):
-    pass
+def get_player_level_from_save(player_info_loaded):
+    return player_info_loaded[-1]
 
 
-def open_level_file():
-    pass
+def open_level_file(level):
+    level_file_path = './src/levels/' + level + '.txt'
+
+    with open(level_file_path, 'r') as level_file:
+        level_content = level_file.readlines()
 
 
 def draw_top_level_bar():
