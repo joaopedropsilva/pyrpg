@@ -14,3 +14,6 @@ def draw_top_level_bar(level_info, player):
 def init_level_interface(level_info, player):
     draw_top_level_bar(level_info, player)
     input()
+
+
+# TODO: Fazer função quebra nos 54 caracteres e caso a quebra for numa palavra, voltar até um espaço

@@ -2,8 +2,6 @@ import menu
 import interface as interf
 import utils as utl
 import animations as anm
-import game
-from structures.hero import Hero
 
 
 def main():

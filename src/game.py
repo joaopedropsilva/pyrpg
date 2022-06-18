@@ -1,6 +1,4 @@
-# TODO: Check class nomenclature
-
-class Level_info(object):
+class LevelInfo(object):
     def __init__(self, level_code, level_number, chapter_name):
         self.level_code = level_code
         self.level_number = level_number
