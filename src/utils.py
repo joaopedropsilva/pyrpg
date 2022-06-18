@@ -1,5 +1,5 @@
 from os import system
-from game import Level_info
+from game import LevelInfo
 from structures.hero import Hero
 
 
@@ -46,7 +46,7 @@ def setup_level(full_level_content, process_return):
     level_info_as_array = pop_level_info_from_file(
         full_level_content)
 
-    level_info = Level_info(
+    level_info = LevelInfo(
         level_info_as_array[0], level_info_as_array[1], level_info_as_array[2])
     player = Hero(
         process_return[0], process_return[1], process_return[2], process_return[3])
