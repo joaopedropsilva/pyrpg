@@ -82,7 +82,7 @@ def create_save_game(hero_name):
             saves.append(f'{hero_name}\n')
             save_games_info.seek(0, 2)
             save_games_info.write(f'{hero_name}\n')
-    return 'create_game'
+    return [hero_name, DEFAULT_HERO_HP, DEFAULT_HERO_ATK, DEFAULT_HERO_DEFENSE, 'lvl_0']
 
 
 def create_new_game():  # returns None if process failed or 'create_game' if it worked

@@ -1,12 +1,35 @@
-from stack import Stack
-from game_constants import DEFAULT_HERO_HP, DEFAULT_HERO_DEFENSE, DEFAULT_HERO_ATK
+from structures.stack import Stack
 
 
 class Hero:
-    def __init__(self, name):
+    def __init__(self, name, hp, attack, defense):
         self.name = name
-        self.hp = DEFAULT_HERO_HP
-        self.defense = DEFAULT_HERO_DEFENSE
-        self.attack = DEFAULT_HERO_ATK
+        self.hp = hp
+        self.atk = attack
+        self.dfs = defense
         self.belt = []
         self.bag = Stack()
+
+    @property
+    def hp(self):
+        return self._hp
+
+    @hp.setter
+    def hp(self, new_hp):
+        self._hp = new_hp
+
+    @property
+    def atk(self):
+        return self._atk
+
+    @atk.setter
+    def atk(self, new_atk):
+        self._atk = new_atk
+
+    @property
+    def dfs(self):
+        return self._dfs
+
+    @dfs.setter
+    def dfs(self, new_dfs):
+        self._dfs = new_dfs
