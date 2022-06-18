@@ -1,6 +1,6 @@
 class Enemy:
-    def __init__(self, name, hp, atk, dfs):
+    def __init__(self, name, hp, attack, defense):
         self.name = name
         self.hp = hp
-        self.defense = dfs
-        self.attack = atk
+        self.atk = attack
+        self.dfs = defense

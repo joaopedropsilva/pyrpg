@@ -1,6 +1,9 @@
 import menu
 import interface as interf
+import utils as utl
 import animations as anm
+import game
+from structures.hero import Hero
 
 
 def main():
@@ -14,11 +17,13 @@ def main():
         if(process_return is False):  # quit game
             break
 
-        if (user_option == '1' and process_return == 'create_game'):  # create new game
-            pass
+        if (user_option == '1' and process_return != None):  # create new game
+            level_info, player = utl.init_level(process_return)
+            interf.init_level_interface(level_info, player)
+
         elif (user_option == '2' and process_return != None):  # load game
-            interf.open_level_file(
-                interf.get_player_level_from_save(process_return))
+            level_info, player = utl.init_level(process_return)
+            interf.init_level_interface(level_info, player)
 
 
 if __name__ == '__main__':
