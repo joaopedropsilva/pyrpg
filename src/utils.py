@@ -1,6 +1,12 @@
 from os import system
+from sys import stdout
+
 from game import LevelInfo
 from structures.hero import Hero
+from structures.game_constants import MAX_LINE_LENGTH
+
+
+# General purpose functions
 
 
 def clear_screen():
@@ -17,6 +23,9 @@ def remove_newline(name):
             break
 
     return correct_name
+
+
+# Level related functions
 
 
 def get_player_level_from_save(player_info_loaded):
@@ -61,4 +70,31 @@ def init_level(process_return):
     level_info, player = setup_level(
         full_level_content, process_return)
 
-    return level_info, player
+    # remove the first 3 items (level info related)
+    level_content = [line for index,
+                     line in enumerate(full_level_content) if index > 2]
+
+    return level_info, player, level_content
+
+
+def check_line_length(line):
+    line_size = len(line)
+
+    if (line_size > MAX_LINE_LENGTH):
+        # breaks the line into elements, including spaces
+        new_line = [element for item in line.split()
+                    for element in (item, ' ')][:-1]
+
+        # iterates through the elements in new_line in reverse
+        for index in reversed(range(len(new_line))):
+            line_size -= len(new_line[index])
+            if (new_line[index] == ' ' and line_size <= MAX_LINE_LENGTH):
+                dropped_part = new_line[index:]
+                del new_line[index:]
+                break
+
+        new_line_as_string = ''.join(new_line)
+        dropped_part_as_string = ''.join(dropped_part)
+        return new_line_as_string, dropped_part_as_string
+
+    return None, None
