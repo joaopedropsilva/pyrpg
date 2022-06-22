@@ -85,7 +85,7 @@ def create_save_game(hero_name):
     return [hero_name, DEFAULT_HERO_HP, DEFAULT_HERO_ATK, DEFAULT_HERO_DEFENSE, 'lvl_0']
 
 
-def create_new_game():  # returns None if process failed or 'create_game' if it worked
+def create_new_game():  # returns None if process failed or player_info list if it worked
     hero_name = ask_for_hero_name()
 
     return create_save_game(hero_name)

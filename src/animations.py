@@ -14,6 +14,9 @@ def timed_writing_animation(text, animation_speed=DEFAULT_ANIMATION_SPEED):
         sleep(animation_speed)
 
 
+# Menu animations
+
+
 def menu_transfer_animation():
     pass
 
