@@ -27,7 +27,6 @@ def remove_newline(name):
 
 # Level related functions
 
-
 def get_player_level_from_save(player_info_loaded):
     return player_info_loaded[-1]
 
@@ -98,3 +97,17 @@ def check_line_length(line):
         return new_line_as_string, dropped_part_as_string
 
     return None, None
+
+
+# Save related functions
+
+
+def autosave(level_info, player):
+    file_path = './saves/save_' + str(player.name) + '.txt'
+    with open(file_path, 'w') as save:
+        save.write(
+            f'{player.name}\n{player.hp}\n{player.atk}\n{player.dfs}\n{str(player.belt)}\n{str(player.bag)}\n{level_info.level_code}')
+
+
+def test_get_info_from_save():
+    pass
