@@ -18,6 +18,30 @@ De clamor e de espanto”
 “Bem vindos à Ode ao Aether”
 \stop
 \start
-Tudo começou em uma das várias miseráveis vilas do reino de Aether, exploradas pelo regime teocrático do deus-Rei Xaaron, a personificação da Lua na terra.
-A vida árdua e simplória dos camponeses era acentuada pela violência cometida pelos filhos do maquiavélico e tirano deus da Lua: os três Príncipes Prateados, os quais, pela ordem do pai, massacravam, em ordem de horas, dezenas de vilas que não atendessem as demandas colossais impostas à estas.
+[Bardo]
+Tudo começou em uma das várias miseráveis vilas do reino de Aether, exploradas pelo regime 
+teocrático do deus-Rei Xaaron, a personificação da Lua na terra.
+A vida árdua e simplória dos camponeses era acentuada pela violência cometida pelos filhos 
+do maquiavélico e tirano deus da Lua: os três Príncipes Prateados, os quais, pela ordem do 
+pai, massacravam, em ordem de horas, dezenas de vilas que não atendessem as demandas colossais
+impostas à estas.
 \stop
+\start
+Neste contexto, surge nosso herói, um lastimável camponês, medíocre em todas as 
+características. Seu nome era:
+\get_name
+Em sua modesta casa, habitavam sua linda esposa e três adoráveis filhas; seu único e 
+indissolúvel motivo para suportar o peso de sua laboriosa e fatídica vida. Tudo isso viria 
+a mudar em uma noite de lua cheia.
+\stop
+\start
+Era primavera. Os ventos quentes se aproximavam. No entanto, em um reino dominado pela lua, 
+a falta de sol tornava as colheitas insuficientes para pagar os tributos impostos. 
+Nosso quasímodo-herculano herói decide então caçar, almejando ao menos, evitar a fome de 
+sua singela família. Ele então pegou sua simples lança herdada de seu pai e partiu para a 
+orla da floresta, em busca de um veado, que avistara na tarde anterior. 
+\stop
+\start
+Primeira fase: pegue o veado (tutorial de combate, ele é passivo, ou seja, não tem 
+dano de ataque).
+\input
