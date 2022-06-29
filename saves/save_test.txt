@@ -2,6 +2,6 @@ test
 200
 20
 20
-[]
-Stack([])
+['adaga', 'lança inicial', 'faca']
+Stack(['Poção', 'Lança Avançada', 'Lança Honesta'])
 lvl_test

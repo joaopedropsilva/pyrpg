@@ -3,6 +3,7 @@ from sys import stdout
 
 from game import LevelInfo
 from structures.hero import Hero
+from structures.stack import Stack
 from structures.game_constants import MAX_LINE_LENGTH
 
 
@@ -27,6 +28,7 @@ def remove_newline(name):
 
 # Level related functions
 
+
 def get_player_level_from_save(player_info_loaded):
     return player_info_loaded[-1]
 
@@ -50,24 +52,57 @@ def pop_level_info_from_file(full_level_content):
     return level_info
 
 
-def setup_level(full_level_content, process_return):
+def convert_belt_info_to_array(belt_as_str):
+    new_belt_as_str = ''
+
+    for item in belt_as_str:
+        if (item == '[' or item == ']' or item == '"' or item == "'"):
+            continue
+        new_belt_as_str += item
+    belt_as_array = new_belt_as_str.split(',')
+
+    belt_as_array = list(map(lambda item: item.strip(), belt_as_array))
+
+    return belt_as_array
+
+
+def convert_bag_info_to_stack(bag_as_str):
+    bag_as_stack = Stack()
+    new_bag_as_str = bag_as_str.strip('Stack()')
+
+    new_bag_as_array = convert_belt_info_to_array(new_bag_as_str)
+
+    for item in new_bag_as_array:
+        bag_as_stack.push(item)
+
+    return bag_as_stack
+
+
+def setup_level(full_level_content, process_return, pre_save_flag):
     level_info_as_array = pop_level_info_from_file(
         full_level_content)
 
     level_info = LevelInfo(
         level_info_as_array[0], level_info_as_array[1], level_info_as_array[2])
-    player = Hero(
-        process_return[0], process_return[1], process_return[2], process_return[3])
+
+    if (pre_save_flag):
+        player = Hero(
+            process_return[0], process_return[1], process_return[2], process_return[3])
+        player.belt = convert_belt_info_to_array(process_return[4])
+        player.bag = convert_bag_info_to_stack(process_return[5])
+    else:
+        player = Hero(
+            process_return[0], process_return[1], process_return[2], process_return[3])
 
     return level_info, player
 
 
-def init_level(process_return):
+def init_level(process_return, pre_save_flag):
     full_level_content = open_level_file(
         get_player_level_from_save(process_return))
 
     level_info, player = setup_level(
-        full_level_content, process_return)
+        full_level_content, process_return, pre_save_flag)
 
     # remove the first 3 items (level info related)
     level_content = [line for index,
@@ -107,7 +142,3 @@ def autosave(level_info, player):
     with open(file_path, 'w') as save:
         save.write(
             f'{player.name}\n{player.hp}\n{player.atk}\n{player.dfs}\n{str(player.belt)}\n{str(player.bag)}\n{level_info.level_code}')
-
-
-def test_get_info_from_save():
-    pass

@@ -16,11 +16,13 @@ def main():
             break
 
         if (user_option == '1' and process_return != None):  # create new game
-            level_info, player, level_content = utl.init_level(process_return)
+            level_info, player, level_content = utl.init_level(
+                process_return, False)
             interf.init_level_interface(level_info, player, level_content)
 
         elif (user_option == '2' and process_return != None):  # load game
-            level_info, player, level_content = utl.init_level(process_return)
+            level_info, player, level_content = utl.init_level(
+                process_return, True)
             interf.init_level_interface(level_info, player, level_content)
 
         utl.autosave(level_info, player)
