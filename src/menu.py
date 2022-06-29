@@ -60,7 +60,7 @@ def create_save_game(hero_name):
     try:
         with open(save_game_file_name, 'x') as save:
             save.write(
-                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\nlvl_0')
+                f'{hero_name}\n{DEFAULT_HERO_HP}\n{DEFAULT_HERO_ATK}\n{DEFAULT_HERO_DEFENSE}\n[]\nStack([])\nlvl_0')
     except FileExistsError:
         invalid_option_message('create_save_game_fail')
         return None
@@ -82,7 +82,7 @@ def create_save_game(hero_name):
             saves.append(f'{hero_name}\n')
             save_games_info.seek(0, 2)
             save_games_info.write(f'{hero_name}\n')
-    return [hero_name, DEFAULT_HERO_HP, DEFAULT_HERO_ATK, DEFAULT_HERO_DEFENSE, 'lvl_0']
+    return [hero_name, DEFAULT_HERO_HP, DEFAULT_HERO_ATK, DEFAULT_HERO_DEFENSE, '[]', 'Stack([])', 'lvl_0']
 
 
 def create_new_game():  # returns None if process failed or player_info list if it worked

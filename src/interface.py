@@ -29,8 +29,6 @@ def print_level_lines(level_info, player, level_content):
             draw_top_level_bar(level_info, player)
             continue
         if (line == '\stop'):
-            print(
-                f'\nTESTING:\nPLAYER BAG = {player.bag}\nTYPE = {type(player.bag)}')
             draw_bottom_level_bar()
             continue
         elif (line == '\input'):

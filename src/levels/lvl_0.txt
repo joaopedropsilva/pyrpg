@@ -17,3 +17,7 @@ De clamor e de espanto”
 \start
 “Bem vindos à Ode ao Aether”
 \stop
+\start
+Tudo começou em uma das várias miseráveis vilas do reino de Aether, exploradas pelo regime teocrático do deus-Rei Xaaron, a personificação da Lua na terra.
+A vida árdua e simplória dos camponeses era acentuada pela violência cometida pelos filhos do maquiavélico e tirano deus da Lua: os três Príncipes Prateados, os quais, pela ordem do pai, massacravam, em ordem de horas, dezenas de vilas que não atendessem as demandas colossais impostas à estas.
+\stop
