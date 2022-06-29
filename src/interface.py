@@ -1,7 +1,4 @@
-from utils import clear_screen
-from time import sleep  # Substitute for timed_writing_animation
-
-from utils import check_line_length
+from utils import clear_screen, check_line_length
 
 
 def draw_top_level_bar(level_info, player):
@@ -14,7 +11,12 @@ def draw_top_level_bar(level_info, player):
     print('X', '-'*50, 'X', '\n')
 
 
-def print_level_lines(level_content):
+def draw_bottom_level_bar():
+    print('X', '-'*50, 'X')
+    input('Avançar >>>')
+
+
+def print_level_lines(level_info, player, level_content):
     for line in level_content:
         new_line, drop = check_line_length(line)
 
@@ -23,9 +25,11 @@ def print_level_lines(level_content):
             continue
 
         # line flags
-        if (line == '\clear'):
-            sleep(5)
-            clear_screen()
+        if (line == '\start'):
+            draw_top_level_bar(level_info, player)
+            continue
+        if (line == '\stop'):
+            draw_bottom_level_bar()
             continue
         elif (line == '\input'):
             pass
@@ -34,6 +38,4 @@ def print_level_lines(level_content):
 
 
 def init_level_interface(level_info, player, level_content):
-    draw_top_level_bar(level_info, player)
-    print_level_lines(level_content)
-    input()
+    print_level_lines(level_info, player, level_content)

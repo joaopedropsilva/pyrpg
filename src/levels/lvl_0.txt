@@ -1,6 +1,7 @@
 lvl_0
 0
 Prólogo
+\start
 [Bardo]
 “Comam e bebam
 Chorem e se emocionem
@@ -12,5 +13,7 @@ Do portador da lança
 Venham ver a história
 Que em estrofes vos canto
 De clamor e de espanto”
-\clear
+\stop
+\start
 “Bem vindos à Ode ao Aether”
+\stop
