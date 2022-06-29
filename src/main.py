@@ -23,6 +23,8 @@ def main():
             level_info, player, level_content = utl.init_level(process_return)
             interf.init_level_interface(level_info, player, level_content)
 
+        utl.autosave(level_info, player)
+
 
 if __name__ == '__main__':
     main()
