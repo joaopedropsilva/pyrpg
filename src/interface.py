@@ -12,7 +12,7 @@ def draw_top_level_bar(level_info, player):
 
 
 def draw_bottom_level_bar():
-    print('X', '-'*50, 'X')
+    print('\n', 'X', '-'*50, 'X')
     input('Avançar >>>')
 
 
@@ -29,6 +29,8 @@ def print_level_lines(level_info, player, level_content):
             draw_top_level_bar(level_info, player)
             continue
         if (line == '\stop'):
+            print(
+                f'\nTESTING:\nPLAYER BAG = {player.bag}\nTYPE = {type(player.bag)}')
             draw_bottom_level_bar()
             continue
         elif (line == '\input'):

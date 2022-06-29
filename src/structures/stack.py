@@ -11,14 +11,14 @@ class Stack:
         self.__index += 1
         self.__data.append(item)
 
-    def stack_pop(self) -> Any:
+    def pop(self) -> Any:
         try:
             return self.__data.pop()
         except IndexError:
             print('IndexError: empty stack already reached')
             return []
 
-    def stack_peek(self) -> Any:
+    def peek(self) -> Any:
         if not self.__data:
             return []
 
