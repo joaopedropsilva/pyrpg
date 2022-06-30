@@ -2,13 +2,14 @@ from structures.stack import Stack
 
 
 class Hero:
-    def __init__(self, name, hp, attack, defense):
+    def __init__(self, name, hp, attack, defense, screen_count):
         self.name = name
         self.hp = hp
         self.atk = attack
         self.dfs = defense
         self.belt = []
         self.bag = Stack()
+        self.screens = screen_count
 
     @property
     def hp(self):
@@ -33,3 +34,11 @@ class Hero:
     @dfs.setter
     def dfs(self, new_dfs):
         self._dfs = new_dfs
+
+    @property
+    def screens(self):
+        return self._screens
+
+    @screens.setter
+    def screens(self, new_screens):
+        self._screens = new_screens

@@ -90,9 +90,11 @@ def setup_level(full_level_content, process_return, pre_save_flag):
             process_return[0], process_return[1], process_return[2], process_return[3])
         player.belt = convert_belt_info_to_array(process_return[4])
         player.bag = convert_bag_info_to_stack(process_return[5])
+        player.screens = int(process_return[6])
     else:
         player = Hero(
             process_return[0], process_return[1], process_return[2], process_return[3])
+        player.screens = int(process_return[6])
 
     return level_info, player
 
