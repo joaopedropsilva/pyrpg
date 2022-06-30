@@ -4,4 +4,5 @@ test
 20
 ['adaga', 'lança inicial', 'faca']
 Stack(['Poção', 'Lança Avançada', 'Lança Honesta'])
+1
 lvl_test
