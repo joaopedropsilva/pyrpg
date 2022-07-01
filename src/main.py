@@ -18,12 +18,16 @@ def main():
         if (user_option == '1' and process_return != None):  # create new game
             level_info, player, level_content = utl.init_level(
                 process_return, False)
-            interf.init_level_interface(level_info, player, level_content)
+            entry_point = utl.get_entry_point_to_level(level_info, player)
+            interf.init_level_interface(
+                level_info, player, level_content, entry_point)
 
         elif (user_option == '2' and process_return != None):  # load game
             level_info, player, level_content = utl.init_level(
                 process_return, True)
-            interf.init_level_interface(level_info, player, level_content)
+            entry_point = utl.get_entry_point_to_level(level_info, player)
+            interf.init_level_interface(
+                level_info, player, level_content, entry_point)
 
         utl.autosave(level_info, player)
 

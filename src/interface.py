@@ -20,10 +20,10 @@ def draw_bottom_level_bar():
     input('Avançar >>>')
 
 
-def print_level_lines(level_info, player, level_content):
-    screen_count = 0
+def print_level_lines(level_info, player, level_content, entry_point):
+    screen_count = player.screens
 
-    for line in level_content:
+    for line in level_content[entry_point:]:
         new_line, drop = check_line_length(line)
 
         if (new_line is not None):
@@ -32,9 +32,9 @@ def print_level_lines(level_info, player, level_content):
 
         # line flags
         if (line == '\start'):
-            screen_count += 1
             draw_top_level_bar(level_info, player)
             draw_screen_counter(screen_count)
+            screen_count += 1
             continue
         if (line == '\stop'):
             draw_bottom_level_bar()
@@ -48,5 +48,5 @@ def print_level_lines(level_info, player, level_content):
         print(line)
 
 
-def init_level_interface(level_info, player, level_content):
-    print_level_lines(level_info, player, level_content)
+def init_level_interface(level_info, player, level_content, entry_point):
+    print_level_lines(level_info, player, level_content, entry_point)
