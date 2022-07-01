@@ -13,11 +13,11 @@ class LevelInfo(object):
         self._level_code = new_level_code
 
 
-class Iten:
+class Item:
     def __init__(self, name, attack, defense, healing):
         self.name = name
         self.atk = attack
-        self.dfs =defense
+        self.dfs = defense
         self.hlg = healing
 
     @property
@@ -43,6 +43,7 @@ class Iten:
     @healing.setter
     def healing(self, new_healing):
         self._hp = new_healing
+
 
 class Enemy:
     def __init__(self, name, hp, attack, defense):
