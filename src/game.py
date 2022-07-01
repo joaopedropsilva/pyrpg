@@ -75,3 +75,17 @@ class Enemy:
     @dfs.setter
     def dfs(self, new_dfs):
         self._dfs = new_dfs
+
+
+def battle_ATK(HP, ATK, defense):  # nesse sistema de ataque, já conta o defalt + o item
+
+    new_HP = HP + defense - ATK   # HP e defense são do inimigo e ATK é de quem está atacando
+
+    return new_HP
+    
+
+def battle_healing(HP, healing_iten):
+
+    new_HP = HP + healing_iten
+
+    return new_HP
