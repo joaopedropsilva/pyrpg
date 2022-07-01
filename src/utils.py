@@ -87,14 +87,12 @@ def setup_level(full_level_content, process_return, pre_save_flag):
 
     if (pre_save_flag):
         player = Hero(
-            process_return[0], process_return[1], process_return[2], process_return[3])
+            process_return[0], process_return[1], process_return[2], process_return[3], int(process_return[6]))
         player.belt = convert_belt_info_to_array(process_return[4])
         player.bag = convert_bag_info_to_stack(process_return[5])
-        player.screens = int(process_return[6])
     else:
         player = Hero(
-            process_return[0], process_return[1], process_return[2], process_return[3])
-        player.screens = int(process_return[6])
+            process_return[0], process_return[1], process_return[2], process_return[3], int(process_return[6]))
 
     return level_info, player
 
@@ -143,4 +141,20 @@ def autosave(level_info, player):
     file_path = './saves/save_' + str(player.name) + '.txt'
     with open(file_path, 'w') as save:
         save.write(
-            f'{player.name}\n{player.hp}\n{player.atk}\n{player.dfs}\n{str(player.belt)}\n{str(player.bag)}\n{level_info.level_code}')
+            f'{player.name}\n{player.hp}\n{player.atk}\n{player.dfs}\n{str(player.belt)}\n{str(player.bag)}\n{player.screens}\n{level_info.level_code}')
+
+
+def get_entry_point_to_level(level_info, player):
+    flags_to_reach = player.screens
+    flags_count = 0
+    full_level_content = open_level_file(level_info.level_code)
+
+    # remove the first 3 items (level info related)
+    level_content = [line for index,
+                     line in enumerate(full_level_content) if index > 2]
+
+    for index, line in enumerate(level_content):
+        if (line == '\start'):
+            flags_count += 1
+        if (flags_count == flags_to_reach):
+            return index
