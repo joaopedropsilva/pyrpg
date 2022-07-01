@@ -1,52 +1,54 @@
-from utils import clear_screen, check_line_length
+from utils import clear_screen, check_line_length, get_selected_item
 
 
 # Input related functions
 
 
 def input_attempts(filter='letter'):
-    if (filter == 'binary'):
+    if (filter == 'decide'):
         while True:
             try:
                 option = int(input('Sua escolha: '))
-                if (option == 1 or option == 2):
-                    return (option, 'binary')
+                if (option == 1 or option == 2 or option == 3):
+                    return (option, 'decide', False)
                 else:
                     raise ValueError
             except ValueError:
-                print('Digite apenas alguma das opções!')
+                print('[!] Digite apenas alguma das opções')
                 continue
-    elif (filter == 'non_binary'):
+    elif (filter == 'interact'):
         while True:
             try:
                 option = int(input('Sua escolha: '))
-                if (option >= 0 and option <= 9):
-                    return (option, 'non_binary')
+                if (option == 0):
+                    return (option, 'interact', True)
+                elif (option >= 1 and option <= 9):
+                    return (option, 'interact', False)
                 else:
                     raise ValueError
             except ValueError:
-                print('Digite apenas alguma das opções!')
+                print('[!] Digite apenas alguma das opções')
                 continue
     else:
         while True:
             try:
                 option = input('Sua escolha: ').upper()
                 if (option == 'S' or option == 'N'):
-                    return (option, 'letter')
+                    return (option, 'letter', False)
                 else:
                     raise ValueError
             except ValueError:
-                print('Digite apenas alguma das opções!')
+                print('[!] Digite apenas alguma das opções')
                 continue
 
 
-def draw_input_select_item(belt, bag):
+def draw_input_iem_select(belt, bag):
     print('X', '-'*50, 'X')
     print('Usar itens do cinto ou da mochila')
     print(f'CINTO: {belt} [1 ao 9]')
     print(f'MOCHILA: {bag} [0]')
     print('Qual item deseja selecionar? [1 ao 9] ou [0]')
-    return input_attempts('non_binary')
+    return (input_attempts('interact'), 'iem_select')
 
 
 def draw_input_choose_item_drop(belt, bag):
@@ -55,43 +57,52 @@ def draw_input_choose_item_drop(belt, bag):
     print(f'CINTO: {belt} [1 ao 9]')
     print(f'MOCHILA: {bag} [0]')
     print('Qual item deseja largar? [1 ao 9] ou [0]')
-    return input_attempts('non_binary')
+    return (input_attempts('interact'), 'item_drop')
 
 
-def draw_input_item_options(item):
+def draw_input_item_found_options(item):
     print('X', '-'*50, 'X')
-    print(f'O que deseja fazer com {item}')
-    print('[1] Usar\n[2] Ver Informações')
-    return input_attempts('binary')
-
-
-def draw_input_get_item():
-    print('X', '-'*50, 'X')
-    print('Pegar item [S/N]')
-    return input_attempts()
-
-
-def draw_input_drop_item():
-    print('X', '-'*50, 'X')
-    print('Largar algum item [S/N]')
-    return input_attempts()
+    print(f'O que deseja fazer com {item}?')
+    print('[1] Pegar [2] Ver Informações [3] Ignorar')
+    return (input_attempts('decide'), 'item_options')
 
 
 def draw_input_atk():
     print('X', '-'*50, 'X')
     print('Atacar [S/N]')
-    return input_attempts()
+    return (input_attempts(), 'atk')
+
+# Test
 
 
-def filter_inputs(input):
-    option, option_type = input
-    if (option_type == 'binary'):
-        pass
-    elif (option_type == 'non_binary'):
-        pass
+def draw_item_selected(item):
+    print('X', '-'*50, 'X')
+    print(f'{item} selecionado!')
+
+
+def filter_inputs(input, player):
+    input_response, context = input
+    option, option_type, bag_use_flag = input_response
+
+    if (option_type == 'decide' and context == 'item_options'):
+        if (option == 1):
+            pass
+    elif (option_type == 'interact'):
+        if (context == 'iem_select' and bag_use_flag is False):
+            item = get_selected_item(option-1, player.belt)
+            draw_item_selected(item)
+        elif (context == 'iem_select' and bag_use_flag is True):
+            item = get_selected_item(option, player.bag, bag_use_flag)
+            draw_item_selected(item)
+        elif (context == 'item_drop'):
+            pass
     else:
-        pass
-
+        if (context == 'get_item'):
+            pass
+        elif (context == 'drop_item'):
+            pass
+        elif (context == 'atk'):
+            pass
 
 # Combat related functions
 
@@ -140,8 +151,10 @@ def print_level_lines(level_info, player, level_content, entry_point):
         elif (line == '\get_name'):
             print(' '*2, player.name)
             continue
-        elif (line == '\input'):
-            continue
+        elif (line == '\input_item_found'):
+            draw_input_item_found_options()
+        elif (line == '\combat'):
+            pass
 
         print(line)
 

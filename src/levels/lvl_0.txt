@@ -44,5 +44,5 @@ orla da floresta, em busca de um veado, que avistara na tarde anterior.
 \start
 Primeira fase: pegue o veado (tutorial de combate, ele é passivo, ou seja, não tem 
 dano de ataque).
-\input
-\stop
+\combat
+
