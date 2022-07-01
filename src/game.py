@@ -14,11 +14,12 @@ class LevelInfo(object):
 
 
 class Item:
-    def __init__(self, name, attack, defense, healing):
+    def __init__(self, name, attack, defense, healing, weight):
         self.name = name
         self.atk = attack
         self.dfs = defense
         self.hlg = healing
+        self.weight = weight
 
     @property
     def atk(self):
@@ -77,15 +78,46 @@ class Enemy:
         self._dfs = new_dfs
 
 
-def battle_ATK(HP, ATK, defense):  # nesse sistema de ataque, já conta o defalt + o item
+# Items
 
-    new_HP = HP + defense - ATK   # HP e defense são do inimigo e ATK é de quem está atacando
+
+spare_initial = Item('Lança Hereditária', 2, 0, 0, 1.05)
+raw_flesh_initial = Item('Carne Crua', 0, 0, 5, 1)
+sun_stone_initial = Item('Pedra do Sol', 50, 0, 100, 0.2)
+
+iron_spare_common = Item('Lança de Ferro', 10, 0, 0, 2.25)
+fruits_common = Item('Frutas', 0, 0, 5, 0.1)
+grass_fork_common = Item('Forcado', 8, 0, 0, 1.25)
+
+imperial_halberd_rare = Item('Alabarda do Exército Imperial', 25, 0, 0, 4)
+meat_stew_rare = Item('Ensopado de Carne', 0, 0, 25, 0.65)
+
+nectar_ambrosia_divine = Item('Néctar e Ambrósia', 0, 0, 50, 0.15)
+sun_berserker_fists_divine = Item('Punhos do Berserker do Sol', 50, 0, 0, 0)
+
+
+# Enemies
+
+
+full_moon_god = Enemy('Xaaron, Deus-Lua', 200, 100, 1000)
+sun_goddess = Enemy('Hemera, Deusa-Sol', 1000, 1000, 1000)
+new_moon_princess = Enemy('Nice, Princesa da Lua Nova', 40, 20, 10)
+crescent_moon_prince = Enemy('Phobos, Príncipe da Lua Crescente', 75, 20, 20)
+waning_moon_prince = Enemy('Deimos, Príncipe da Lua Minguante', 100, 15, 15)
+
+hero_daughter = Enemy('Aurora', 1, 0, 0)
+
+
+def battle_ATK(HP, ATK, defense):  # nesse sistema de ataque, já conta o default + o item
+
+    # HP e defense são do inimigo e ATK é de quem está atacando
+    new_HP = HP + defense - ATK
 
     return new_HP
-    
 
-def battle_healing(HP, healing_iten):
 
-    new_HP = HP + healing_iten
+def battle_healing(HP, healing_item):
+
+    new_HP = HP + healing_item
 
     return new_HP

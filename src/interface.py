@@ -173,3 +173,5 @@ def print_level_lines(level_info, player, level_content, entry_point):
 
 def init_level_interface(level_info, player, level_content, entry_point):
     print_level_lines(level_info, player, level_content, entry_point)
+
+# TODO: add if (line == item in array) to grab the item
