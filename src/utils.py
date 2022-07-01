@@ -28,6 +28,7 @@ def remove_newline(name):
 
 # Input related functions
 
+
 def get_selected_item(item_index, item_place, bag_use_flag=False):
     if (bag_use_flag is False):
         return item_place[item_index]
