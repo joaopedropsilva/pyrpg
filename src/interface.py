@@ -1,3 +1,4 @@
+from os import PRIO_PGRP
 from utils import clear_screen, check_line_length
 
 
@@ -94,8 +95,15 @@ def filter_inputs(input):
 
 
 # Combat related functions
+def draw_enemy_skills(enemy):
 
+    print('\n'*2, 'X='*26, 'X')
+    
+    print(' '*2, 'MODO BATALHA', '\n*2', 'Você entrou em batalha com um inimigo, suas carateristicas são: ', '\n' )
+    print(' '*2, f'| {enemy.name} |')
+    print(' '*2, f'| HP: {enemy.hp} | ATK: {enemy.atk} | DEF: {enemy.dfs}')
 
+    print('X='*26, 'X', '\n')
 # Level related functions
 
 
