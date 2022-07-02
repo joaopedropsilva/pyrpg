@@ -1,13 +1,13 @@
 from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST
 from utils import (clear_screen, check_line_length,
                    filter_inputs)
-from game import all_items, all_enemies
+from game import all_items, all_enemies, battle_atk
 
 
-# Input related functions
+# Input functions
 
 
-def input_attempts(filter='letter'):
+def input_attempts(filter):
     if (filter == 'decide'):
         while True:
             try:
@@ -37,7 +37,7 @@ def input_attempts(filter='letter'):
             try:
                 option = input('Sua escolha: ').upper()
                 if (option == 'S' or option == 'N'):
-                    return (option, 'letter', False)
+                    return (option, 'yes_or_no', False)
                 else:
                     raise ValueError
             except ValueError:
@@ -45,20 +45,20 @@ def input_attempts(filter='letter'):
                 continue
 
 
-def draw_input_item_select(belt, bag):
-    print('X', '-'*50, 'X')
-    print('Usar itens do cinto ou da mochila')
-    print(f'CINTO: {belt} [1 ao 9]')
-    print(f'MOCHILA: {bag} [0]')
+def draw_input_item_select(player, reason):
+    print('='*54)
+    print(f'Usar itens do cinto ou da mochila para {reason}')
+    print(f'CINTO: {player.belt} [1 ao 9]')
+    print(f'MOCHILA: {player.bag} [0]')
     print('Qual item deseja selecionar? [1 ao 9] ou [0]')
     return (input_attempts('interact'), 'item_select')
 
 
-def draw_input_choose_item_drop(belt, bag):
+def draw_input_item_drop(player):
     print('X', '-'*50, 'X')
     print('Largar itens do cinto ou da mochila')
-    print(f'CINTO: {belt} [1 ao 9]')
-    print(f'MOCHILA: {bag} [0]')
+    print(f'CINTO: {player.belt} [1 ao 9]')
+    print(f'MOCHILA: {player.bag} [0]')
     print('Qual item deseja largar? [1 ao 9] ou [0]')
     return (input_attempts('interact'), 'item_drop')
 
@@ -75,6 +75,13 @@ def draw_input_item_found_options(item):
     return (input_attempts('decide'), 'item_found_options')
 
 
+# Battle Mode input functions
+
+
+def draw_input_atk(player):
+    return draw_input_item_select(player, 'atacar')
+
+
 # Input results functions
 
 
@@ -85,7 +92,17 @@ def show_item_add_success(item, flag):
         print(f'{item.name} adicionado ao cinto!')
 
 
-# Level related functions
+def show_atk_success(entity_one, entity_two, damage):
+    print('='*54)
+    print(f'\n{entity_one.name} atacou {entity_two.name} com {damage} de dano!')
+
+
+def show_battle_end(entity_one, entity_two):
+    print('='*54)
+    print(f'\n{entity_one.name} finalizou {entity_two.name}!')
+
+
+# Level functions
 
 
 def draw_top_level_bar(level_info, player):
@@ -103,7 +120,8 @@ def draw_screen_counter(screen_count):
 
 
 def draw_bottom_level_bar():
-    print('\n', 'X', '-'*50, 'X')
+    print('')
+    print('X', '-'*50, 'X')
     input('Avançar >>>')
 
 
@@ -133,7 +151,7 @@ def print_level_lines(level_info, player, level_content, entry_point):
             item = all_items[line]
 
             user_input = draw_input_item_found_options(item)
-            filter_return = filter_inputs(user_input, player, item)
+            filter_return = filter_inputs(user_input, player, None, item)
 
             if (filter_return is False):
                 exit()
@@ -144,23 +162,51 @@ def print_level_lines(level_info, player, level_content, entry_point):
             continue
         elif (line in ALL_ENEMIES_LIST):
             enemy = all_enemies[line]
-            pass
+
+            draw_battle_mode(player, enemy)
+            continue
 
         print(line)
 
 
-# Combat related functions
+# Combat functions
 
 
-def draw_enemy_skills(enemy):
-    print('\n'*2, 'X='*26, 'X')
+def draw_battle_mode(player, enemy):
+    print('')
+    print('X='*26 + 'X\n')
 
-    print(' '*2, 'MODO BATALHA', '\n*2',
-          'Você entrou em batalha com um inimigo, suas carateristicas são: ', '\n')
-    print(' '*2, f'| {enemy.name} |')
-    print(' '*2, f'| HP: {enemy.hp} | ATK: {enemy.atk} | DEF: {enemy.dfs}')
+    print(' '*4, 'MODO BATALHA\n')
+    print(' '*2, 'Você entrou em batalha com um inimigo:')
+    print(
+        ' '*2, f'| {enemy.name} | HP: {enemy.hp} | ATK: {enemy.atk} | DEF: {enemy.dfs}\n')
 
-    print('X='*26, 'X', '\n')
+    entity_one = player
+    entity_two = enemy
+    winner = False
+    while not (winner):
+        if (entity_one == player):
+            user_input = draw_input_atk(entity_one)
+            atk_item = filter_inputs(user_input, entity_one)
+
+            entity_two_new_hp, damage = battle_atk(
+                entity_one, entity_two, atk_item.atk)
+        else:
+            entity_two_new_hp, damage = battle_atk(
+                entity_one, entity_two)
+
+        entity_two.hp = entity_two_new_hp - int(entity_two.dfs)
+
+        if (entity_two_new_hp == 0):
+            winner = True
+            show_battle_end(entity_one, entity_two)
+        else:
+            show_atk_success(entity_one, entity_two, damage)
+
+        entity_one, entity_two = entity_two, entity_one
+
+    print('')
+    print('X='*26 + 'X')
 
 
 def init_level_interface(level_info, player, level_content, entry_point):
