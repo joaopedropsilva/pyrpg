@@ -144,4 +144,15 @@ def battle_healing(hp, healing_item):
 
     new_hp = hp + healing_item
 
-    return new_hp
+    return new_HP
+
+
+def final_battle(HP, ATK, defense, player):
+
+    if player == 1:
+        new_HP = HP - 1
+
+    elif ATK >= HP:
+        new_HP = 1
+    else:
+        new_HP = HP + defense - ATK
