@@ -98,6 +98,8 @@ sun_berserker_fists_divine = Item('Punhos do Berserker do Sol', 50, 0, 0, 0)
 
 # Enemies
 
+hero_daughter = Enemy('Aurora', 1, 0, 0)
+deer = Enemy('Veado', 5, 0, 0)
 
 full_moon_god = Enemy('Xaaron, Deus-Lua', 200, 100, 1000)
 sun_goddess = Enemy('Hemera, Deusa-Sol', 1000, 1000, 1000)
@@ -105,7 +107,25 @@ new_moon_princess = Enemy('Nice, Princesa da Lua Nova', 40, 20, 10)
 crescent_moon_prince = Enemy('Phobos, Príncipe da Lua Crescente', 75, 20, 20)
 waning_moon_prince = Enemy('Deimos, Príncipe da Lua Minguante', 100, 15, 15)
 
-hero_daughter = Enemy('Aurora', 1, 0, 0)
+
+all_items = {'/spare_initial': spare_initial,
+             '/raw_flesh_initial': raw_flesh_initial,
+             '/sun_stone_initial': sun_stone_initial,
+             '/iron_spare_common': iron_spare_common,
+             '/fruits_common': fruits_common,
+             '/grass_fork_common': grass_fork_common,
+             '/imperial_halberd_rare': imperial_halberd_rare,
+             '/meat_stew_rare': meat_stew_rare,
+             '/nectar_ambrosia_divine': nectar_ambrosia_divine,
+             '/sun_berserker_fists_divine': sun_berserker_fists_divine}
+
+all_enemies = {'/deer': deer,
+               '/hero_daughter': hero_daughter,
+               '/full_moon_god': full_moon_god,
+               '/sun_goddess': sun_goddess,
+               '/new_moon_princess': new_moon_princess,
+               '/crescent_moon_prince': crescent_moon_prince,
+               '/waning_moon_prince': waning_moon_prince}
 
 
 def battle_ATK(HP, ATK, defense):  # nesse sistema de ataque, já conta o default + o item

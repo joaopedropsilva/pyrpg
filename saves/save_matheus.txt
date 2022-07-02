@@ -4,5 +4,5 @@ matheus
 5
 ['']
 Stack([''])
-1
+6
 lvl_0
