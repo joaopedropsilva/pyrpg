@@ -1,3 +1,4 @@
+from argparse import ArgumentError
 from os import system
 from sys import stdout
 
@@ -33,6 +34,48 @@ def get_selected_item(item_index, item_place, bag_use_flag=False):
     if (bag_use_flag is False):
         return item_place[item_index]
     return item_place.peek()
+
+
+def process_item_found_decision(option, player, item):
+    try:
+        if (item is None):
+            raise ArgumentError
+
+        if (option == 1 and len(player.belt) == 9):
+            player.bag.push(item.name)
+
+            return 'item_add_to_bag'
+        elif (option == 1 and len(player.belt) < 9):
+            if (player.belt[0] == ''):
+                player.belt.pop()
+            player.belt.append(item.name)
+
+            return 'item_add_to_belt'
+        else:
+            return None
+    except ArgumentError:
+        print('[ArgumentError] No item found!')
+        return False
+
+
+def process_decision_inputs(option, context, player, item=None):
+    if (context == 'item_found_options'):
+        return process_item_found_decision(option, player, item)
+    # elif (context == '')
+
+
+def process_interaction_inputs(option, context, player):
+    pass
+
+
+def filter_inputs(input, player, item=None):
+    input_response, context = input
+    option, option_type, bag_use_flag = input_response
+
+    if (option_type == 'decide'):
+        return process_decision_inputs(option, context, player, item)
+    elif (option_type == 'interact'):
+        return process_interaction_inputs(option, context, player)
 
 
 # Level related functions
@@ -163,7 +206,7 @@ def get_entry_point_to_level(level_info, player):
                      line in enumerate(full_level_content) if index > 2]
 
     for index, line in enumerate(level_content):
-        if (line == '\start'):
+        if (line == '/start'):
             flags_count += 1
         if (flags_count == flags_to_reach):
             return index

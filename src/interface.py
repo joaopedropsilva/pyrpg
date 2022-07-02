@@ -1,4 +1,7 @@
-from utils import clear_screen, check_line_length, get_selected_item
+from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST
+from utils import (clear_screen, check_line_length,
+                   filter_inputs)
+from game import all_items, all_enemies
 
 
 # Input related functions
@@ -9,7 +12,7 @@ def input_attempts(filter='letter'):
         while True:
             try:
                 option = int(input('Sua escolha: '))
-                if (option == 1 or option == 2 or option == 3):
+                if (option == 1 or option == 2):
                     return (option, 'decide', False)
                 else:
                     raise ValueError
@@ -42,13 +45,13 @@ def input_attempts(filter='letter'):
                 continue
 
 
-def draw_input_iem_select(belt, bag):
+def draw_input_item_select(belt, bag):
     print('X', '-'*50, 'X')
     print('Usar itens do cinto ou da mochila')
     print(f'CINTO: {belt} [1 ao 9]')
     print(f'MOCHILA: {bag} [0]')
     print('Qual item deseja selecionar? [1 ao 9] ou [0]')
-    return (input_attempts('interact'), 'iem_select')
+    return (input_attempts('interact'), 'item_select')
 
 
 def draw_input_choose_item_drop(belt, bag):
@@ -62,61 +65,24 @@ def draw_input_choose_item_drop(belt, bag):
 
 def draw_input_item_found_options(item):
     print('X', '-'*50, 'X')
-    print(f'O que deseja fazer com {item}?')
-    print('[1] Pegar [2] Ver Informações [3] Ignorar')
-    return (input_attempts('decide'), 'item_options')
+    print(
+        f'''Item encontrado: {item.name}
+                [Dano] -> {item.atk} DMG
+                [Defesa] -> {item.dfs} DMG
+                [Cura] -> {item.hlg} HP
+                [Peso] -> {item.weight} kg''')
+    print('O que deseja fazer? [1] Pegar [2] Ignorar')
+    return (input_attempts('decide'), 'item_found_options')
 
 
-def draw_input_atk():
-    print('X', '-'*50, 'X')
-    print('Atacar [S/N]')
-    return (input_attempts(), 'atk')
-
-# Test
+# Input results functions
 
 
-def draw_item_selected(item):
-    print('X', '-'*50, 'X')
-    print(f'{item} selecionado!')
-
-
-def filter_inputs(input, player):
-    input_response, context = input
-    option, option_type, bag_use_flag = input_response
-
-    if (option_type == 'decide' and context == 'item_options'):
-        if (option == 1):
-            pass
-    elif (option_type == 'interact'):
-        if (context == 'iem_select' and bag_use_flag is False):
-            item = get_selected_item(option-1, player.belt)
-            draw_item_selected(item)
-        elif (context == 'iem_select' and bag_use_flag is True):
-            item = get_selected_item(option, player.bag, bag_use_flag)
-            draw_item_selected(item)
-        elif (context == 'item_drop'):
-            pass
-    else:
-        if (context == 'get_item'):
-            pass
-        elif (context == 'drop_item'):
-            pass
-        elif (context == 'atk'):
-            pass
-
-# Combat related functions
-
-
-def draw_enemy_skills(enemy):
-
-    print('\n'*2, 'X='*26, 'X')
-
-    print(' '*2, 'MODO BATALHA', '\n*2',
-          'Você entrou em batalha com um inimigo, suas carateristicas são: ', '\n')
-    print(' '*2, f'| {enemy.name} |')
-    print(' '*2, f'| HP: {enemy.hp} | ATK: {enemy.atk} | DEF: {enemy.dfs}')
-
-    print('X='*26, 'X', '\n')
+def show_item_add_success(item, flag):
+    if (flag == 'item_add_to_bag'):
+        print(f'{item.name} adicionado a mochila!')
+    elif (flag == 'item_add_to_belt'):
+        print(f'{item.name} adicionado ao cinto!')
 
 
 # Level related functions
@@ -152,23 +118,49 @@ def print_level_lines(level_info, player, level_content, entry_point):
             continue
 
         # line flags
-        if (line == '\start'):
+        if (line == '/start'):
             draw_top_level_bar(level_info, player)
             draw_screen_counter(screen_count)
             screen_count += 1
             continue
-        if (line == '\stop'):
+        elif (line == '/stop'):
             draw_bottom_level_bar()
             continue
-        elif (line == '\get_name'):
+        elif (line == '/get_name'):
             print(' '*2, player.name)
             continue
-        elif (line == '\input_item_found'):
-            draw_input_item_found_options()
-        elif (line == '\combat'):
+        elif (line in ALL_ITEMS_LIST):
+            item = all_items[line]
+
+            user_input = draw_input_item_found_options(item)
+            filter_return = filter_inputs(user_input, player, item)
+
+            if (filter_return is False):
+                exit()
+            elif (filter_return == 'item_add_to_bag'):
+                show_item_add_success(item, 'item_add_to_bag')
+            elif (filter_return == 'item_add_to_belt'):
+                show_item_add_success(item, 'item_add_to_belt')
+            continue
+        elif (line in ALL_ENEMIES_LIST):
+            enemy = all_enemies[line]
             pass
 
         print(line)
+
+
+# Combat related functions
+
+
+def draw_enemy_skills(enemy):
+    print('\n'*2, 'X='*26, 'X')
+
+    print(' '*2, 'MODO BATALHA', '\n*2',
+          'Você entrou em batalha com um inimigo, suas carateristicas são: ', '\n')
+    print(' '*2, f'| {enemy.name} |')
+    print(' '*2, f'| HP: {enemy.hp} | ATK: {enemy.atk} | DEF: {enemy.dfs}')
+
+    print('X='*26, 'X', '\n')
 
 
 def init_level_interface(level_info, player, level_content, entry_point):
