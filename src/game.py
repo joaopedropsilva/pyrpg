@@ -142,7 +142,7 @@ def battle_atk(entity_one, entity_two, item_atk=0):
 
 def battle_healing(hp, healing_item):
 
-    new_hp = hp + healing_item
+    new_HP = hp + healing_item
 
     return new_HP
 
