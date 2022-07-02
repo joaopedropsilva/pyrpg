@@ -1,5 +1,6 @@
 from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST
 from utils import (clear_screen, check_line_length,
+                   check_inventory_state,
                    filter_inputs)
 from game import all_items, all_enemies, battle_atk
 
@@ -7,7 +8,7 @@ from game import all_items, all_enemies, battle_atk
 # Input functions
 
 
-def input_attempts(filter):
+def input_attempts(filter, player=None, bag_state=False):
     if (filter == 'decide'):
         while True:
             try:
@@ -17,20 +18,22 @@ def input_attempts(filter):
                 else:
                     raise ValueError
             except ValueError:
-                print('[!] Digite apenas alguma das opções')
+                print('[!] Digite apenas alguma das opções válidas')
                 continue
     elif (filter == 'interact'):
         while True:
             try:
                 option = int(input('Sua escolha: '))
-                if (option == 0):
+                if (option == 0 and bag_state is False):
+                    raise ValueError
+                elif (option == 0 and bag_state is True):
                     return (option, 'interact', True)
-                elif (option >= 1 and option <= 9):
+                elif (option >= 1 and option <= 9 and len(player.belt) >= option):
                     return (option, 'interact', False)
                 else:
                     raise ValueError
             except ValueError:
-                print('[!] Digite apenas alguma das opções')
+                print('[!] Digite apenas alguma das opções válidas')
                 continue
     else:
         while True:
@@ -41,26 +44,18 @@ def input_attempts(filter):
                 else:
                     raise ValueError
             except ValueError:
-                print('[!] Digite apenas alguma das opções')
+                print('[!] Digite apenas alguma das opções válidas')
                 continue
 
 
 def draw_input_item_select(player, reason):
     print('='*54)
     print(f'Usar itens do cinto ou da mochila para {reason}')
+    bag_repr, bag_state = check_inventory_state(player)
     print(f'CINTO: {player.belt} [1 ao 9]')
-    print(f'MOCHILA: {player.bag} [0]')
+    print(f"MOCHILA: ['{bag_repr}'] [0]")
     print('Qual item deseja selecionar? [1 ao 9] ou [0]')
-    return (input_attempts('interact'), 'item_select')
-
-
-def draw_input_item_drop(player):
-    print('X', '-'*50, 'X')
-    print('Largar itens do cinto ou da mochila')
-    print(f'CINTO: {player.belt} [1 ao 9]')
-    print(f'MOCHILA: {player.bag} [0]')
-    print('Qual item deseja largar? [1 ao 9] ou [0]')
-    return (input_attempts('interact'), 'item_drop')
+    return (input_attempts('interact', player, bag_state), 'item_select')
 
 
 def draw_input_item_found_options(item):
@@ -200,6 +195,7 @@ def draw_battle_mode(player, enemy):
         if (entity_two_new_hp == 0):
             winner = True
             show_battle_end(entity_one, entity_two)
+            # FIXME: reset entity two HP
         else:
             show_atk_success(entity_one, entity_two, damage)
 
