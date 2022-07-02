@@ -99,7 +99,7 @@ sun_berserker_fists_divine = Item('Punhos do Berserker do Sol', 50, 0, 0, 0)
 # Enemies
 
 hero_daughter = Enemy('Aurora', 1, 0, 0)
-deer = Enemy('Veado', 5, 0, 0)
+deer = Enemy('Veado', 10, 0, 0)
 
 full_moon_god = Enemy('Xaaron, Deus-Lua', 200, 100, 1000)
 sun_goddess = Enemy('Hemera, Deusa-Sol', 1000, 1000, 1000)
@@ -128,27 +128,31 @@ all_enemies = {'/deer': deer,
                '/waning_moon_prince': waning_moon_prince}
 
 
-def battle_ATK(HP, ATK, defense):  # nesse sistema de ataque, já conta o default + o item
+def battle_atk(entity_one, entity_two, item_atk=0):
+    entity_one_damage_given = int(entity_one.atk) + item_atk
+    entity_two_total_defense = int(entity_two.hp) + int(entity_two.dfs)
 
-    # HP e defense são do inimigo e ATK é de quem está atacando
-    new_HP = HP + defense - ATK
+    if (entity_one_damage_given >= entity_two_total_defense):
+        entity_two_new_hp = 0
+    else:
+        entity_two_new_hp = entity_two_total_defense - entity_one_damage_given
 
-    return new_HP
+    return entity_two_new_hp, entity_one_damage_given
 
 
-def battle_healing(HP, healing_item):
+def battle_healing(hp, healing_item):
 
-    new_HP = HP + healing_item
+    new_hp = hp + healing_item
 
     return new_HP
 
 
 def final_battle(HP, ATK, defense, player):
-    
+
     if player == 1:
         new_HP = HP - 1
 
     elif ATK >= HP:
         new_HP = 1
-    else: new_HP = HP + defense - ATK
-
+    else:
+        new_HP = HP + defense - ATK

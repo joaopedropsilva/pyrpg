@@ -2,7 +2,7 @@ from argparse import ArgumentError
 from os import system
 from sys import stdout
 
-from game import LevelInfo
+from game import LevelInfo, all_items, battle_atk
 from structures.hero import Hero
 from structures.stack import Stack
 from structures.game_constants import MAX_LINE_LENGTH
@@ -29,11 +29,18 @@ def remove_newline(name):
 
 # Input related functions
 
+def get_item_by_name(item_name, all_items):
+    for item in all_items.values():
+        if(item_name == item.name):
+            return item
 
-def get_selected_item(item_index, item_place, bag_use_flag=False):
+
+def get_selected_item(item_index, player, bag_use_flag=False):
     if (bag_use_flag is False):
-        return item_place[item_index]
-    return item_place.peek()
+        item_name = player.belt[item_index-1]
+        return get_item_by_name(item_name, all_items)
+    item_name = player.bag.peek()
+    return get_item_by_name(item_name, all_items)
 
 
 def process_item_found_decision(option, player, item):
@@ -64,18 +71,19 @@ def process_decision_inputs(option, context, player, item=None):
     # elif (context == '')
 
 
-def process_interaction_inputs(option, context, player):
-    pass
+def process_interaction_inputs(option, context, player, bag_use_flag):
+    if (context == 'item_select'):
+        return get_selected_item(option, player, bag_use_flag)
 
 
-def filter_inputs(input, player, item=None):
+def filter_inputs(input, player, enemy=None, item=None):
     input_response, context = input
     option, option_type, bag_use_flag = input_response
 
     if (option_type == 'decide'):
         return process_decision_inputs(option, context, player, item)
     elif (option_type == 'interact'):
-        return process_interaction_inputs(option, context, player)
+        return process_interaction_inputs(option, context, player, bag_use_flag)
 
 
 # Level related functions

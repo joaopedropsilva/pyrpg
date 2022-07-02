@@ -2,7 +2,7 @@ matheus
 100
 5
 5
-['']
+['Lança Hereditária']
 Stack([''])
 6
 lvl_0
