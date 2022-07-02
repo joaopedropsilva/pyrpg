@@ -80,7 +80,7 @@ class Enemy:
 
 # Items
 
-
+dagger_initial = Item('Adaga', 1, 0, 0, 0.1)
 spare_initial = Item('Lança Hereditária', 2, 0, 0, 1.05)
 raw_flesh_initial = Item('Carne Crua', 0, 0, 5, 1)
 sun_stone_initial = Item('Pedra do Sol', 50, 0, 100, 0.2)
@@ -108,7 +108,8 @@ crescent_moon_prince = Enemy('Phobos, Príncipe da Lua Crescente', 75, 20, 20)
 waning_moon_prince = Enemy('Deimos, Príncipe da Lua Minguante', 100, 15, 15)
 
 
-all_items = {'/spare_initial': spare_initial,
+all_items = {'/dagger_initial': dagger_initial,
+             '/spare_initial': spare_initial,
              '/raw_flesh_initial': raw_flesh_initial,
              '/sun_stone_initial': sun_stone_initial,
              '/iron_spare_common': iron_spare_common,

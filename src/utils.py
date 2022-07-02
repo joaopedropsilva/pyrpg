@@ -29,6 +29,13 @@ def remove_newline(name):
 
 # Input related functions
 
+
+def check_inventory_state(player):
+    if (player.bag.peek() == ''):
+        return 'Vazia', False
+    return player.bag.peek(), True
+
+
 def get_item_by_name(item_name, all_items):
     for item in all_items.values():
         if(item_name == item.name):
@@ -153,6 +160,8 @@ def setup_level(full_level_content, process_return, pre_save_flag):
     else:
         player = Hero(
             process_return[0], process_return[1], process_return[2], process_return[3], int(process_return[6]))
+        player.belt.append('Adaga')
+        player.bag.push('')
 
     return level_info, player
 
