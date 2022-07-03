@@ -1,4 +1,5 @@
 from argparse import ArgumentError
+from copy import deepcopy
 from os import system
 from sys import stdout
 
@@ -27,7 +28,7 @@ def remove_newline(name):
     return correct_name
 
 
-# Input related functions
+# Input functions
 
 
 def check_inventory_state(player):
@@ -93,15 +94,15 @@ def filter_inputs(input, player, enemy=None, item=None):
         return process_interaction_inputs(option, context, player, bag_use_flag)
 
 
-# Level related functions
+# Level functions
 
 
 def get_player_level_from_save(player_info_loaded):
     return player_info_loaded[-1]
 
 
-def open_level_file(level):
-    level_file_path = './src/levels/' + level + '.txt'
+def open_level_file(level_code):
+    level_file_path = './src/levels/' + level_code + '.txt'
 
     with open(level_file_path, 'r') as level_file:
         full_level_content = level_file.readlines()
@@ -203,7 +204,39 @@ def check_line_length(line):
     return None, None
 
 
-# Save related functions
+# Change level functions
+
+def get_next_level(level_info):
+    level_code_text = level_info.level_code[:4]
+    level_code_number = int(level_info.level_code[-1])
+
+    return level_code_text + str(level_code_number+1)
+
+# TODO: check object return
+
+
+def change_level_info_object(level_info, new_level_code):
+    new_level_info = deepcopy(level_info)
+
+    full_level_content = open_level_file(new_level_code)
+    level_info_as_array = pop_level_info_from_file(full_level_content)
+
+    new_level_info.level_code = level_info_as_array[0]
+    new_level_info.level_number = level_info_as_array[1]
+    new_level_info.chapter_name = level_info_as_array[2]
+
+    return new_level_info
+
+
+def change_level_procedure(level_info, player):
+    new_level_code = get_next_level(level_info)
+    new_level_info = change_level_info_object(level_info, new_level_code)
+
+    player.screens = 1
+    return new_level_info
+
+
+# Save functions
 
 
 def autosave(level_info, player):

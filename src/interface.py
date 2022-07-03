@@ -118,7 +118,7 @@ def draw_screen_counter(screen_count):
 def draw_bottom_level_bar():
     print('')
     print('X', '-'*50, 'X')
-    input('Avançar >>>')
+    return input('Avançar [ou "Q" para sair] >>>').upper()
 
 
 def print_level_lines(level_info, player, level_content, entry_point):
@@ -135,10 +135,12 @@ def print_level_lines(level_info, player, level_content, entry_point):
         if (line == '/start'):
             draw_top_level_bar(level_info, player)
             draw_screen_counter(screen_count)
-            screen_count += 1
             continue
         elif (line == '/stop'):
-            draw_bottom_level_bar()
+            action = draw_bottom_level_bar()
+            screen_count += 1
+            if (action == 'Q'):
+                break
             continue
         elif (line == '/get_name'):
             print(' '*2, player.name)
@@ -166,10 +168,12 @@ def print_level_lines(level_info, player, level_content, entry_point):
 
             draw_aurora_death(player, enemy)
             continue
+        elif (line == '/end'):
+            return True
 
         print(line)
         player.screens = screen_count
-
+    return False
 
 # Combat functions
 
@@ -228,4 +232,4 @@ def draw_aurora_death(player, enemy):
 
 
 def init_level_interface(level_info, player, level_content, entry_point):
-    print_level_lines(level_info, player, level_content, entry_point)
+    return print_level_lines(level_info, player, level_content, entry_point)

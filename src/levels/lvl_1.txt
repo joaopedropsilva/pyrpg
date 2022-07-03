@@ -1,0 +1,6 @@
+lvl_1
+1
+Capítulo 1
+/start
+Começo do level 1
+/stop

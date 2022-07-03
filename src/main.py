@@ -19,17 +19,27 @@ def main():
             level_info, player, level_content = utl.init_level(
                 process_return, False)
             entry_point = utl.get_entry_point_to_level(level_info, player)
-            interf.init_level_interface(
+            level_status = interf.init_level_interface(
                 level_info, player, level_content, entry_point)
+
+            utl.autosave(level_info, player)
+
+            if (level_status):
+                level_info = utl.change_level_procedure(level_info, player)
+                utl.autosave(level_info, player)
 
         elif (user_option == '2' and process_return != None):  # load game
             level_info, player, level_content = utl.init_level(
                 process_return, True)
             entry_point = utl.get_entry_point_to_level(level_info, player)
-            interf.init_level_interface(
+            level_status = interf.init_level_interface(
                 level_info, player, level_content, entry_point)
 
-        utl.autosave(level_info, player)
+            utl.autosave(level_info, player)
+
+            if (level_status):
+                level_info = utl.change_level_procedure(level_info, player)
+                utl.autosave(level_info, player)
 
 
 if __name__ == '__main__':

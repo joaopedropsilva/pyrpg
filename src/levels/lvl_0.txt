@@ -140,3 +140,4 @@ Em seguida, ele questiona como faria para chegar ao castelo, que se encontrava m
 longe da vila. Antes de conseguir terminar sua pergunta, o guerreiro vê um brilho intenso e
 se encontra na frente do castelo, instantaneamente.
 /stop
+/end
