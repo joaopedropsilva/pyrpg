@@ -6,11 +6,13 @@ import animations as anm
 
 def main():
     menu.draw_home_screen()
+    level_advance_status = False
 
     while True:
-        menu.draw_menu_options()
-        user_option = str(input('Digite sua opção: '))
-        process_return = menu.process_option(user_option)
+        if (level_advance_status is False):
+            menu.draw_menu_options()
+            user_option = str(input('Digite sua opção: '))
+            process_return = menu.process_option(user_option)
 
         if(process_return is False):  # quit game
             break
@@ -28,7 +30,11 @@ def main():
                 level_info = utl.change_level_info_procedure(
                     level_info, player)
                 utl.autosave(level_info, player)
-                # TODO: interface function that transfers the level; change level animation
+
+                anm.level_advance_animation(level_info)
+
+                user_option = '2'
+                process_return = menu.load_game(player.name)
 
         elif (user_option == '2' and process_return != None):  # load game
             level_info, player, level_content = utl.init_level(
@@ -43,7 +49,11 @@ def main():
                 level_info = utl.change_level_info_procedure(
                     level_info, player)
                 utl.autosave(level_info, player)
-                # TODO: interface function that transfers the level; change level animation
+
+                anm.level_advance_animation(level_info)
+
+                user_option = '2'
+                process_return = menu.load_game(player.name)
 
 
 if __name__ == '__main__':

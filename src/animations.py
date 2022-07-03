@@ -1,17 +1,16 @@
 from time import sleep
 from sys import stdout
-import keyboard as kb
-from utils import clear_screen
 
+from utils import clear_screen
 from structures.game_constants import DEFAULT_ANIMATION_SPEED
+from interface import draw_level_advance
 
 
 def timed_writing_animation(text, animation_speed=DEFAULT_ANIMATION_SPEED):
     for letter in text:
         stdout.write(letter)
         stdout.flush()
-        # if (kb.on_press('right')):
-        #     animation_speed *= 2
+
         sleep(animation_speed)
 
 
@@ -26,15 +25,18 @@ def creating_new_game_animation():
     pass
 
 
-def loading_game_animation():
+def level_advance_animation(level_info):
     clear_screen()
-    animacao = ['\\'*52,'\n', '//'*26, '\n']
-    
-    barra = ['/'*10,' '*10, "[",'-'*10, ' '*0 , "]",' '*10, '\\'*10, '\n']
-    timed_writing_animation(animacao*5, 0.2)
-    for i in range(len(barra)):
-            if i == 3:
-                timed_writing_animation(barra[i], 0.5)
-            else : timed_writing_animation(barra[i], 0.1)
+    animation = ['\\'*52, '\n', '//'*26, '\n']
 
-    timed_writing_animation(animacao*5, 0.2)
+    bar = ['/'*10, ' '*10, "[", '-'*10, ' '*0, "]", ' '*10, '\\'*10, '\n']
+    timed_writing_animation(animation*5, 0.1)
+    for i in range(len(bar)):
+        if i == 3:
+            timed_writing_animation(bar[i], 0.25)
+        else:
+            timed_writing_animation(bar[i], 0.05)
+
+    timed_writing_animation(animation*5, 0.1)
+
+    draw_level_advance(level_info.level_number)
