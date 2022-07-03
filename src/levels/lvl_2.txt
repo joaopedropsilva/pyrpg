@@ -1,0 +1,37 @@
+lvl_2
+2
+Capítulo 2
+/start
+O herói se retira do jardim, adentrando a porta à direita da estátua. A sala seguinte era
+escura. Possuía alguns armários antigos, de madeira maciça. Mas o fato mais notório do cômodo
+era o excesso de gigantes, peludas e assustadoras aranhas. As teias cobriam todo o teto,
+tornando impossível realmente enxergar o que havia acima delas.
+Ele se aproxima do primeiro armário e não encontra nada...
+Ele se aproxima do segundo armário...
+/fruits_common
+/stop
+/start
+Nosso herói se aproxima da porta, com certo terror por aranhas. Uma sombra às suas costas o
+faz arrepiar. Um fétido cheiro azedo e ácido entra por suas narinas e não resistindo ao impulso
+ele se vira, apenas para deparar-se com o Terror. O primeiro gêmeo. O sádico Príncipe Deimos,
+de ponta-cabeça, observando-o com seus penetrantes olhos dourados e um sorriso perverso.
+Sua armadura era uma junção de carapaças de aranhas, meticulosamente bordadas em um único
+tecido duro. Sua espada era prateada, com partes corroídas pelo veneno ácido de suas crias.
+/stop
+/start
+Sem delongas ele agarra o nosso jovem guerreiro. Arremessando-o para o outro lado do cômodo.
+- Filho da Puta! - Exclamou o herói, se recompondo e brandindo sua lança na direção do oponente.
+/waning_moon_prince
+/stop
+/start
+Sem dizer uma palavra, nosso herói pega a espada do oponente, que ao observar a pedra do sol,
+começa a clamar misericórdia.  Em um único golpe, o valente guerreiro decepa sua cabeça.
+De seus ferimentos, escorre um líquido pegajoso, em tons dourados. As aranhas ao perceberem,
+descem de suas teias e começam a devorar o defunto. A espada que estava nas mãos do vingador
+irado começa a derreter, ele percebe que está emitindo uma luz forte de seu corpo. Ele joga a espada fora.
+/stop
+/start
+Ele encontra um baú, deve ter pertencido ao defunto que está sendo devorado ao fundo.
+/imperial_halberd_rare
+/stop
+/end

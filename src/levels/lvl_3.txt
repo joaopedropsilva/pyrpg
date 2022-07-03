@@ -1,0 +1,73 @@
+lvl_3
+3
+Capítulo 3
+/start
+A porta que Deimos, o Príncipe do Terror, guardava era um grande e sombrio galpão. Todas as
+paredes, o teto e o chão eram espelhos. Nosso herói sente-se enjoado logo nos primeiros passos,
+mas é tomado com um senso de dever imensurável, rapidamente recuperando-se e marchando ao outro lado
+da sala. No meio do caminho ele tromba em uma parede até então invisível, a ira de ter sido tão
+facilmente enganado o fez bater no espelho, rachando-o. Dos trincos, dedos se espremeram e
+logo encheram-se de sangue, pelos cortes que os espelhos proporcionavam.
+O herói recua, confuso, enquanto os dedos abriam mais a trinca, aparecendo então uma mão
+severamente cortada, comprida, com dedos tortos e rasgados, unhas mal aparadas e sujas de sangue pisado. 
+/stop
+/start
+Em um ato de desespero, nosso herói tenta cortar a mão que aparecia cada vez mais. Do buraco
+um gemido, não de dor, mas de prazer, surgiu. Uma gargalhada profunda ecoou pelo salão,
+fazendo até mesmo nosso valente herói estremecer. Este corre para a direção da saída,
+trombando nos espelhos no meio do caminho, fazendo aparecer mais e mais trincos, por onde mais mãos surgiam.
+/stop
+/start
+São em momentos de desesperos, que atos idiotas fazem sentido, por isso nosso grandioso
+matador de príncipes desafiou os braços perturbadores, apenas para que este urrasse
+cômicamente, de forma cálida e áspera.
+/stop
+/start
+Foi quando um dos braços alcançaram nosso distraído herói, agarrando-o e fazendo-o cortar mais
+um dos membros da criatura. Isto fez com que seu cinto balançasse, revelando a rubro-áurea gema
+que ele carregava. Uma onda de luz ecoou por todo o salão e uma voz feminina familiar
+bradou: “Eis o Príncipe Phobos, o senhor do medo! Não alimente-o com o teu, mate-o!”.
+Phobos havia recolhido seus membros dos trincos, como se algo o tivesse surpreendido, uma voz
+saiu dos trincos. Não qualquer voz, uma voz de uma criança, muito querida ao nosso herói urrando: “Mãe!”
+/stop
+/start
+O valente então, tomado por um ódio incessante e corrosivo aproxima-se do espelho, abrindo um
+espaço maior e puxando o que se encontrava lá dentro para fora. A criatura sorria - digo criatura,
+pois aquilo não era humano- o rosto completamente desfigurado, apresentava olhos dourados,
+como o do irmão aracnídeo, mas rasgados; sua boca sorria perversamente, era a única parte
+intacta, a única que provava ser o segundo gêmeo. Seu nariz era aberto no meio, fazendo
+escorrer um líquido vermelho e dourado. Mas seu corpo era o mais bizarro: era redondo, como
+a lua cheia, mas com um pedaço rasgado à esquerda, assemelhando-o a uma lua crescente,
+seu corpo era coberto por diversos buracos, que vertiam sangue. De todos os lugares saíam
+braços e mãos, ele não possuía pernas ou pés, apenas braços e mãos.
+/stop
+/start
+Ao notar ter sido agarrado por um dos braços, Phobos agarra em lanças e escudos, que se
+encontravam espalhados pelo chão, pondo-se em posição de ataque. Uma voz saiu da criatura,
+novamente a voz de Aurora, filha mais nova de nosso herói, mas não saiu por sua boca,
+que manteve-se com um sorriso de escárnio. Saiu por entre os buracos, que sincronizavam em um coro:
+/stop
+/start
+- Por favor pai… faça parar de doer - e logo em seguida um gemido de prazer e uma gargalhada 
+obscura, macabra e mais blasfêmica que nosso herói já ouvira em sua miserável vida.
+Tomado por um brilho rubro, nosso herói começou a tremer de pura raiva, partindo para o ataque, sem transmitir um sentimento de medo ou misericórdia, apenas a ira.
+/crescent_moon_prince
+/stop
+/start
+O guerreiro começa a arrancar um a um os braços do seu oponente. A pedra em seu cinto cintila
+e vibra, emitindo uma onda de calor e queimando parte a parte o seu oponente. Dos olhos
+rasgados jorrava um espesso líquido dourado como o sol, que brilhava. A criatura não se
+encontrava em energia para sequer emitir um som. Phobos fora tomado pelo medo. O Príncipe do
+medo estava paralizado pela própria amante, o medo, o veneno o qual destilava e jogava sobre
+seus inimigos: o horror da morte.
+/stop
+/start
+Quando finalmente o coração apareceu diante do nosso corajoso herói, este penetrou-o com sua lança. Fazendo seu sangue rubro-áureo espirrasse por toda a sala. 
+Com a morte do Príncipe da Lua Crescente, todos os espelhos da sala se partiram. Relevando
+o caminho para a sala do trono. O momento chegou.
+/stop
+/start
+O herói vê que o semi-carbonizado defunto possuía um baú, parecido com o de seu irmão.
+/nectar_ambrosia_divine
+/stop
+/end

@@ -40,3 +40,9 @@ Os olhos da princesa argentina se arregalaram. Seu corpo começou a perder o bri
 ferimentos começou a escorrer um líquido dourado e espesso, suas lágrimas caíam misturadas
 com seu sangue. E ela se esvaía, lentamente e aos berros.
 /stop
+/start
+Nosso herói retirou a arma da barriga da já morta Princesa Prateada. Seus olhos se dirigiram à
+estátua. Ele então observa uma lança de ferro, a qual a defunta homenageada segurava.
+/iron_spare_common
+/stop
+/end

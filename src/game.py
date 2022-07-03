@@ -12,6 +12,22 @@ class LevelInfo(object):
     def level_code(self, new_level_code):
         self._level_code = new_level_code
 
+    @property
+    def level_number(self):
+        return self._level_number
+
+    @level_number.setter
+    def level_number(self, new_level_number):
+        self._level_number = new_level_number
+
+    @property
+    def chapter_name(self):
+        return self._chapter_name
+
+    @chapter_name.setter
+    def chapter_name(self, new_chapter_name):
+        self._chapter_name = new_chapter_name
+
 
 class Item:
     def __init__(self, name, attack, defense, healing, weight):
