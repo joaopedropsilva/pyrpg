@@ -5,7 +5,6 @@ from structures.game_constants import (DEFAULT_HERO_HP,
                                        DEFAULT_HERO_DEFENSE,
                                        DEFAULT_HERO_ATK)
 from animations import timed_writing_animation
-
 from utils import clear_screen, remove_newline
 
 
