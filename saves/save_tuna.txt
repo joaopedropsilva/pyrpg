@@ -1,8 +1,0 @@
-tuna
-20
-5
-5
-['Lança Hereditária', 'Carne Crua', 'Pedra do Sol', 'Forcado']
-Stack([''])
-5
-lvl_1

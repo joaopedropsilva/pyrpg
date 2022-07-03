@@ -27,8 +27,7 @@ def main():
             utl.autosave(level_info, player)
 
             if (level_advance_status):
-                level_info = utl.change_level_info_procedure(
-                    level_info, player)
+                utl.change_level_info_procedure(level_info, player)
                 utl.autosave(level_info, player)
 
                 anm.level_advance_animation(level_info)
@@ -46,8 +45,7 @@ def main():
             utl.autosave(level_info, player)
 
             if (level_advance_status):
-                level_info = utl.change_level_info_procedure(
-                    level_info, player)
+                utl.change_level_info_procedure(level_info, player)
                 utl.autosave(level_info, player)
 
                 anm.level_advance_animation(level_info)

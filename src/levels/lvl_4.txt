@@ -1,0 +1,51 @@
+lvl_4
+4
+Capítulo 4
+/start
+A nefasta sala do trono era de longe maligna. Era na realidade muito bela. Um amplo salão,
+sem teto; as luzes dos raios lunares refletiam na parede, iluminando o cômodo por completo.
+As paredes eram detalhadamente talhadas com inúmeras constelações, cada qual com seu nome. 
+/stop
+/start
+O trono era no centro do cômodo. Era branco, como osso, mas notavelmente feito de prata pura
+muito polida, em que diversos cristais de brilhos azulados estavam incrustados. Em torno do
+trono, no chão, havia uma gravura em círculo. Eram as fases da lua, cada fase com seu
+respectivo príncipe e no centro, ao redor do trono, o detentor do poder da Lua Cheia, o
+temível tirano. O deus Xaaron. O Rei.
+/stop
+/start
+Este encontrava-se sentado em seu trono, a sua expressão forçosamente entediada demonstrava zombaria.
+Os olhos azuis, como a maré em noite de Lua de cheia, eram cálidos e seus cabelos aparentavam prata
+pura em inúmeros fios finíssimos, que se desprendiam de seu crânio e assentavam-se em sua cintura;
+a luz da lua parecia iluminá-los, dando uma leve impressão de luminescência luciferina.
+Seu rosto fino contrastava com seu corpo bem estruturado. O maldito era belo.
+/stop
+/start
+Ele sorriu, com todos os seus branquíssimos dentes arrogantes, enquanto seus olhos fixavam-se
+na pedra do cinto. O jeito presunçoso que o rei o olhava - como se o convidasse a se curvar -
+fez com que o nosso herói incendiasse de pleno ódio. Sua família agonizando de dor sob a
+mesma lua, sua desgraça de vida de camponês ao longo dos anos. Tudo isso parecia culminar
+naquele momento. Ele levanta sua arma, e urra na direção de seu oponente.
+/stop
+/start
+/full_moon_god
+/stop
+/start
+Com uma espada cravada em suas entranhas, o nosso herói cai de joelhos. Derrotado, humilhado,
+um ser desprezível. Sua consciência devaneia entre as risadas incessantes do deus louco ao
+fundo, que começa a confundir-se com o choro de sua filha Aurora, com os gritos de sua
+família carbonizada, com os clamores de misericórdia que ele negou. Ele cai no chão.
+Um zumbido pulsátil lateja de sua cintura. Seu corpo parecia entrar em uma convulsão,
+sua temperatura subia a cada pulso de energia. Até que a pedra estourou.
+/stop
+/start
+Uma aura avermelhada, surgiu ao redor de seu corpo. Seu corpo estava tão quente que derretera
+a espada do rei. Um pulso de energia é emitido de seu corpo, jogando o rei para trás. Uma
+ira arcaica toma posse de sua mente, ele parecia estar fora de seu controle, seus músculos
+obedeciam uma ordem superior. Neste estado de cólera, ele parte em direção ao seu oponente,
+que encontrava-se no meio termo de ódio e medo.
+/stop
+/start
+/final_battle
+/stop
+/end

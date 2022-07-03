@@ -42,8 +42,7 @@ sua singela família. Ele então pegou sua simples lança herdada de seu pai e p
 orla da floresta, em busca de um veado, que avistara na tarde anterior. 
 /stop
 /start
-Primeira fase: 
-pegue o veado (tutorial de combate, ele é passivo, ou seja, não tem dano de ataque).
+Primeira fase: pegue o veado (tutorial de combate, ele é passivo, ou seja, não tem dano de ataque).
 /deer
 /raw_flesh_initial
 /stop

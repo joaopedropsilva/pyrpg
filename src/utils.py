@@ -219,30 +219,25 @@ def check_line_length(line):
 
 def get_next_level(level_info):
     level_code_text = level_info.level_code[:4]
-    level_code_number = int(level_info.level_code[-1])
+    level_code_number = int(level_info.level_code[-1]) + 1
 
-    return level_code_text + str(level_code_number+1)
+    return level_code_text + str(level_code_number)
 
 
 def change_level_info_object(level_info, new_level_code):
-    new_level_info = deepcopy(level_info)
-
     full_level_content = open_level_file(new_level_code)
     level_info_as_array = pop_level_info_from_file(full_level_content)
 
-    new_level_info.level_code = level_info_as_array[0]
-    new_level_info.level_number = level_info_as_array[1]
-    new_level_info.chapter_name = level_info_as_array[2]
-
-    return new_level_info
+    level_info.level_code = new_level_code
+    level_info.level_number = level_info_as_array[1]
+    level_info.chapter_name = level_info_as_array[2]
 
 
 def change_level_info_procedure(level_info, player):
     new_level_code = get_next_level(level_info)
-    new_level_info = change_level_info_object(level_info, new_level_code)
+    change_level_info_object(level_info, new_level_code)
 
     player.screens = 1
-    return new_level_info
 
 
 # Save functions
