@@ -1,4 +1,4 @@
-from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST
+from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST, DEFAULT_HERO_BELT_LENGTH
 from utils import (clear_screen, check_line_length,
                    check_inventory_state,
                    filter_inputs)
@@ -28,7 +28,7 @@ def input_attempts(filter, player=None, bag_state=False):
                     raise ValueError
                 elif (option == 0 and bag_state is True):
                     return (option, 'interact', True)
-                elif (option >= 1 and option <= 9 and len(player.belt) >= option):
+                elif (option >= 1 and option <= DEFAULT_HERO_BELT_LENGTH and len(player.belt) >= option):
                     return (option, 'interact', False)
                 else:
                     raise ValueError
@@ -52,9 +52,9 @@ def draw_input_item_select(player, reason):
     print('='*54)
     print(f'Usar itens do cinto ou da mochila para {reason}')
     bag_repr, bag_state = check_inventory_state(player)
-    print(f'CINTO: {player.belt} [1 ao 9]')
+    print(f'CINTO: {player.belt} [1 ao 4]')
     print(f"MOCHILA: ['{bag_repr}'] [0]")
-    print('Qual item deseja selecionar? [1 ao 9] ou [0]')
+    print('Qual item deseja selecionar? [1 ao 4] ou [0]')
     return (input_attempts('interact', player, bag_state), 'item_select')
 
 

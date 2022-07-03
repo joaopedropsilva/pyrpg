@@ -5,7 +5,7 @@ from sys import stdout
 from game import LevelInfo, all_items
 from structures.hero import Hero
 from structures.stack import Stack
-from structures.game_constants import MAX_LINE_LENGTH
+from structures.game_constants import MAX_LINE_LENGTH, DEFAULT_HERO_BELT_LENGTH
 
 
 # General purpose functions
@@ -55,11 +55,11 @@ def process_item_found_decision(option, player, item):
         if (item is None):
             raise ArgumentError
 
-        if (option == 1 and len(player.belt) == 9):
+        if (option == 1 and len(player.belt) == DEFAULT_HERO_BELT_LENGTH):
             player.bag.push(item.name)
 
             return 'item_add_to_bag'
-        elif (option == 1 and len(player.belt) < 9):
+        elif (option == 1 and len(player.belt) < DEFAULT_HERO_BELT_LENGTH):
             if (player.belt[0] == ''):
                 player.belt.pop()
             player.belt.append(item.name)
