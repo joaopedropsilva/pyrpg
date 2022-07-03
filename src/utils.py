@@ -2,7 +2,7 @@ from argparse import ArgumentError
 from os import system
 from sys import stdout
 
-from game import LevelInfo, all_items, battle_atk
+from game import LevelInfo, all_items
 from structures.hero import Hero
 from structures.stack import Stack
 from structures.game_constants import MAX_LINE_LENGTH
@@ -160,7 +160,7 @@ def setup_level(full_level_content, process_return, pre_save_flag):
     else:
         player = Hero(
             process_return[0], process_return[1], process_return[2], process_return[3], int(process_return[6]))
-        player.belt.append('Adaga')
+        player.belt.append('Lança Hereditária')
         player.bag.push('')
 
     return level_info, player

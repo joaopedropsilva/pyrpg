@@ -77,6 +77,10 @@ def draw_input_atk(player):
     return draw_input_item_select(player, 'atacar')
 
 
+def draw_aurora_death(player):
+    pass
+
+
 # Input results functions
 
 
@@ -160,6 +164,10 @@ def print_level_lines(level_info, player, level_content, entry_point):
 
             draw_battle_mode(player, enemy)
             continue
+        elif (line == '/aurora_death'):
+            enemy = all_enemies['/hero_daughter']
+
+            draw_aurora_death(player, enemy)
 
         print(line)
 
@@ -178,6 +186,7 @@ def draw_battle_mode(player, enemy):
 
     entity_one = player
     entity_two = enemy
+    entity_two_default_hp = int(enemy.hp)
     winner = False
     while not (winner):
         if (entity_one == player):
@@ -195,7 +204,7 @@ def draw_battle_mode(player, enemy):
         if (entity_two_new_hp == 0):
             winner = True
             show_battle_end(entity_one, entity_two)
-            # FIXME: reset entity two HP
+            enemy.hp = entity_two_default_hp
         else:
             show_atk_success(entity_one, entity_two, damage)
 

@@ -2,7 +2,7 @@ matheus
 100
 5
 5
-['Adaga']
+['Lança Hereditária', 'Carne Crua']
 Stack([''])
-6
+11
 lvl_0
