@@ -60,6 +60,3 @@ def level_advance_animation(level_info):
     timed_writing_animation(animation*5, 0.1)
 
     draw_level_advance(level_info.level_number)
-
-
-creating_new_game_animation()
