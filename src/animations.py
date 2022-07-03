@@ -22,7 +22,27 @@ def menu_transfer_animation():
 
 
 def creating_new_game_animation():
-    pass
+    animation = [['HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHHHHHHHHHHHHHHH|||||||||HHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHHHHHHHHHH|||||||||||||||||||HHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHHHHHH||||||||||HHHHHHHHH||||||HHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHH|||||||||||HHHHHHHHHHHHHHH|||HHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHH|||||||||||HHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHH||||||||||HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHH|||||||||HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHH||||||||||HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHH|||||||||HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHH||||||||||HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHH|||||||||||HHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHH|||||||||||HHHHHHHHHHHHHHH|||HHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHHHHHH||||||||||HHHHHHHHH||||||HHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHHHHHHHHHH|||||||||||||||||||HHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHHHHHHHHHHHHH|||||||||||HHHHHHHHHHHHHHHHH\n'],
+                 ['HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'] ]
+    
+    for i in range(len(animation)):
+        
+        timed_writing_animation(animation[i], 0.1)
 
 
 def level_advance_animation(level_info):
@@ -40,3 +60,6 @@ def level_advance_animation(level_info):
     timed_writing_animation(animation*5, 0.1)
 
     draw_level_advance(level_info.level_number)
+
+
+creating_new_game_animation()
