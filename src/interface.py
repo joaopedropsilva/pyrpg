@@ -1,7 +1,8 @@
 from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST, DEFAULT_HERO_BELT_LENGTH
 from utils import (clear_screen, check_line_length,
                    check_inventory_state,
-                   filter_inputs)
+                   filter_inputs,
+                   get_selected_item)
 from game import all_items, all_enemies, battle_atk
 
 
@@ -75,10 +76,6 @@ def draw_input_item_found_options(item):
 
 def draw_input_atk(player):
     return draw_input_item_select(player, 'atacar')
-
-
-def draw_aurora_death(player):
-    pass
 
 
 # Input results functions
@@ -168,6 +165,7 @@ def print_level_lines(level_info, player, level_content, entry_point):
             enemy = all_enemies['/hero_daughter']
 
             draw_aurora_death(player, enemy)
+            continue
 
         print(line)
 
@@ -212,6 +210,20 @@ def draw_battle_mode(player, enemy):
 
     print('')
     print('X='*26 + 'X')
+
+
+def draw_aurora_death(player, enemy):
+    atk_item = get_selected_item(1, player)
+    aurora_new_hp, damage = battle_atk(player, enemy, atk_item.atk)
+
+    print('\nAcabe com o sofrimento! Aurora só tem 1 de hp,\né só um hit...')
+    input('Atacar >>>')
+
+    if (aurora_new_hp == 0):
+        print('='*54)
+        print(
+            f'\n\t\t{player.name} mata {enemy.name}\n\tempunhando sua lança no coração da filha!\n')
+        print('='*54)
 
 
 def init_level_interface(level_info, player, level_content, entry_point):
