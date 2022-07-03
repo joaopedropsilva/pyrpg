@@ -44,4 +44,99 @@ orla da floresta, em busca de um veado, que avistara na tarde anterior.
 /start
 Primeira fase: pegue o veado (tutorial de combate, ele é passivo, ou seja, não tem dano de ataque).
 /deer
+/raw_flesh_initial
+/stop
+/start
+Depois dessa difícil caça, nosso herói retorna vitorioso para casa. Levando consigo o espólio
+que manteria sua família saciada pela noite. Entretanto, no caminho de volta, o cheiro
+enjoativo de madeira queimada penetrou em suas narinas. A visão da grande e incomum
+luminosidade ofuscada pela fumaça e pelas cinzas incessantes que insistiam em cair,
+irritou seus olhos e o clamor infernal que ecoava na floresta amaldiçoou seu coração preocupado.
+/stop
+/start
+A deturpada cena encontrada é dolorosamente indescritível. As casas tomadas pelo fogo, as
+plantações destruídas. Corpos dilacerados de amigos e conhecidos, acumulavam-se em pequenos
+montes. E o nosso herói, negando-se a acreditar no destino de sua família, dominado por um
+sentimento fútil de esperança, marchou, guiado pelo seu ferido coração, até a sua casa,
+enquanto repetidamente lutava com seus pensamentos:
+
+-Elas fugiram!
+(Olhe os corpos, aceite a dor.)
+-Mas e se…
+(Ninguém sobreviveu!)
+-Pare! Deixe-me!
+(Abra os olhos ao seu redor!)
+/stop
+/start
+Segunda fase:
+O herói parte em direção ao lamurioso gemido, encontrando do lado de fora de sua casa,
+o corpo da criança amada e sob sua parte inferior do tronco, uma viga espessa de madeira em brasas. 
+
+- Aurora! - exclama o pai, em prantos.
+- Papai, os príncipes… - responde Aurora, sua filha mais nova, enquanto tosse sangue.
+- Shh, não fale mais nada filha, salve suas forças - interrompe o pai, se recusando a acreditar no que via.
+- Por favor pai… faça parar de doer - suplicou a filha, implorando para que o pai acabasse
+com sua miséria.
+/stop
+/start
+Inconsolável, o herói aperta sua lança com força, em uma guerra interna entre dever e querer.
+Ele se levanta. Sua filha o encara, acenando com a cabeça e fechando os olhos.
+Ele ergue sua lança, tremendo muito e em um único segundo de firmeza ele aponta ao coração da filha.
+/stop
+/start
+/aurora_death
+/stop
+/start
+[Bardo]
+Um raio de luz o cobre. A silhueta de uma mulher altiva aparece ao seu lado, colocando a mão
+quente sob seu ombro. Desamparado, nosso herói não parece notar. Até que a mulher o chama,
+com voz aveludada:
+/get_name
+Ouvindo aquela voz calma e serena, no meio de tanto caos e destruição, o herói sai do transe,
+e responde com apenas um murmúrio intranscrítivel.
+/stop
+/start
+- Vou te contar o que aconteceu aqui - afirma a voz misteriosa - mas primeiro,
+preciso me apresentar. Sou Hemera, deusa do Sol.
+- Pouco me importa quem é você, mas me diga agora se sabe algo sobre o que aconteceu aqui - responde
+impacientemente o pai desolado.
+- Entendo sua dor, mas não é à mim que sua raiva deveria ser direcionada. - alertou a deusa - siga-me,
+mostrarei o motivo do massacre.
+/stop
+/start
+Guiado pela deusa, o herói encontrou-se no centro de sua arrasada vila. A deusa, então, com um
+olhar faiscante, apontou com seus dedos finos e compridos, como raios de Sol, a uma gravura
+talhada no chão; uma estrela de oito pontas,
+com raios saindo de leste a oeste.
+/stop
+/start
+- O seu deus-Rei não tolera culto a outros deuses. Com a precária colheita da estação passada,
+o medo da fome e da punição pelos constantes atrasos no pagamento dos tributos, tornaram-se
+realidade no cotidiano dos anciãos, que  me buscaram por ajuda. Está exposta a verdade.
+Os três Príncipes Prateados os dizimaram! - exclamou a deusa firmemente.
+- E qual o motivo de você estar aqui agora? - retrucou o miserável homem, que já havia perdido
+tudo, não se importando com cordialidade e formalidades.
+/stop
+/start
+- Vim te ajudar a conquistar sua vingança. Pagar sangue com sangue. Vida com vida. - Exclamou a 
+deusa, com seus olhos faiscando como explosões solares.
+- E o que você ganha com isso? - Questionou inflamadamente o homem.
+- Não preciso de ganhos, para ajudar a justiça. Eu sou a prova de que depois de uma longa
+noite, o Sol sempre nasce, iluminando os justos.
+- E como eu poderia me vingar? Sou apenas um homem, com uma lança de ferro enferrujada, como
+poderia enfrentar as divindades que destruíram tudo o que eu possuía? - Questionou,
+mais uma vez, o homem, enfurecido pelos próprios pensamentos e sedento por vingança.
+/stop
+/start
+- Eu lhe concederei poder suficiente para enfrentá-los. Você será o meu protegido! Tome essa
+gema, ela é chamada Pedra do Sol, e possui uma parte do meu poder. Enquanto a estiver
+portando, você estará no nível de seus inimigos.
+/sun_stone_initial
+/stop
+/start
+Recebendo a gema, ele sente o poder atravessando seu corpo, como uma chama. Assim, ele encaixa
+a gema em seu cinto, de modo a sempre estar portando-a.
+Em seguida, ele questiona como faria para chegar ao castelo, que se encontrava muito
+longe da vila. Antes de conseguir terminar sua pergunta, o guerreiro vê um brilho intenso e
+se encontra na frente do castelo, instantaneamente.
 /stop

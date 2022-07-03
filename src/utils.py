@@ -2,10 +2,10 @@ from argparse import ArgumentError
 from os import system
 from sys import stdout
 
-from game import LevelInfo, all_items, battle_atk
+from game import LevelInfo, all_items
 from structures.hero import Hero
 from structures.stack import Stack
-from structures.game_constants import MAX_LINE_LENGTH
+from structures.game_constants import MAX_LINE_LENGTH, DEFAULT_HERO_BELT_LENGTH
 
 
 # General purpose functions
@@ -55,11 +55,11 @@ def process_item_found_decision(option, player, item):
         if (item is None):
             raise ArgumentError
 
-        if (option == 1 and len(player.belt) == 9):
+        if (option == 1 and len(player.belt) == DEFAULT_HERO_BELT_LENGTH):
             player.bag.push(item.name)
 
             return 'item_add_to_bag'
-        elif (option == 1 and len(player.belt) < 9):
+        elif (option == 1 and len(player.belt) < DEFAULT_HERO_BELT_LENGTH):
             if (player.belt[0] == ''):
                 player.belt.pop()
             player.belt.append(item.name)
@@ -160,7 +160,7 @@ def setup_level(full_level_content, process_return, pre_save_flag):
     else:
         player = Hero(
             process_return[0], process_return[1], process_return[2], process_return[3], int(process_return[6]))
-        player.belt.append('Adaga')
+        player.belt.append('Lança Hereditária')
         player.bag.push('')
 
     return level_info, player
