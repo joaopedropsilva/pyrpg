@@ -37,6 +37,13 @@ def check_inventory_state(player):
     return player.bag.peek(), True
 
 
+def check_item_in_inventory(player, item):
+    if (item.name in player.belt):
+        player.belt.remove(item.name)
+    elif (player.bag.peek() == item.name):
+        player.bag.pop()
+
+
 def get_item_by_name(item_name, all_items):
     for item in all_items.values():
         if(item_name == item.name):
@@ -76,12 +83,15 @@ def process_item_found_decision(option, player, item):
 def process_decision_inputs(option, context, player, item=None):
     if (context == 'item_found_options'):
         return process_item_found_decision(option, player, item)
-    # elif (context == '')
 
 
 def process_interaction_inputs(option, context, player, bag_use_flag):
     if (context == 'item_select'):
-        return get_selected_item(option, player, bag_use_flag)
+        item = get_selected_item(option, player, bag_use_flag)
+
+        if (item.hlg > 0):
+            return item, 'heal'
+        return item, 'atk'
 
 
 def filter_inputs(input, player, enemy=None, item=None):
