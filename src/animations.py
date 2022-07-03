@@ -30,13 +30,13 @@ def level_advance_animation(level_info):
     animation = ['\\'*52, '\n', '//'*26, '\n']
 
     bar = ['/'*10, ' '*10, "[", '-'*10, ' '*0, "]", ' '*10, '\\'*10, '\n']
-    timed_writing_animation(animation*5, 0.2)
+    timed_writing_animation(animation*5, 0.1)
     for i in range(len(bar)):
         if i == 3:
-            timed_writing_animation(bar[i], 0.5)
+            timed_writing_animation(bar[i], 0.25)
         else:
-            timed_writing_animation(bar[i], 0.1)
+            timed_writing_animation(bar[i], 0.05)
 
-    timed_writing_animation(animation*5, 0.2)
+    timed_writing_animation(animation*5, 0.1)
 
     draw_level_advance(level_info.level_number)
