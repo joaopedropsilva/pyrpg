@@ -212,8 +212,6 @@ def get_next_level(level_info):
 
     return level_code_text + str(level_code_number+1)
 
-# TODO: check object return
-
 
 def change_level_info_object(level_info, new_level_code):
     new_level_info = deepcopy(level_info)
@@ -228,7 +226,7 @@ def change_level_info_object(level_info, new_level_code):
     return new_level_info
 
 
-def change_level_procedure(level_info, player):
+def change_level_info_procedure(level_info, player):
     new_level_code = get_next_level(level_info)
     new_level_info = change_level_info_object(level_info, new_level_code)
 

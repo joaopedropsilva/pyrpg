@@ -1,8 +1,0 @@
-test
-200
-20
-20
-['Lança Hereditária', 'lança inicial', 'faca']
-Stack(['Poção', 'Lança Avançada', 'Lança Honesta'])
-1
-lvl_test
