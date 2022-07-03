@@ -113,7 +113,7 @@ com raios saindo de leste a oeste.
 - O seu deus-Rei não tolera culto a outros deuses. Com a precária colheita da estação passada,
 o medo da fome e da punição pelos constantes atrasos no pagamento dos tributos, tornaram-se
 realidade no cotidiano dos anciãos, que  me buscaram por ajuda. Está exposta a verdade.
-Os três Príncipes Prateados os dizimaram! - exclamou a deusa firmemente.
+- Os três Príncipes Prateados os dizimaram! - exclamou a deusa firmemente.
 - E qual o motivo de você estar aqui agora? - retrucou o miserável homem, que já havia perdido
 tudo, não se importando com cordialidade e formalidades.
 /stop
@@ -140,3 +140,4 @@ Em seguida, ele questiona como faria para chegar ao castelo, que se encontrava m
 longe da vila. Antes de conseguir terminar sua pergunta, o guerreiro vê um brilho intenso e
 se encontra na frente do castelo, instantaneamente.
 /stop
+/end

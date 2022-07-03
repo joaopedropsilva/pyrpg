@@ -129,6 +129,9 @@ all_enemies = {'/deer': deer,
                '/waning_moon_prince': waning_moon_prince}
 
 
+# Battle functions
+
+
 def battle_atk(entity_one, entity_two, item_atk=0):
     entity_one_damage_given = int(entity_one.atk) + item_atk
     entity_two_total_defense = int(entity_two.hp) + int(entity_two.dfs)

@@ -1,7 +1,8 @@
 from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST, DEFAULT_HERO_BELT_LENGTH
 from utils import (clear_screen, check_line_length,
                    check_inventory_state,
-                   filter_inputs)
+                   filter_inputs,
+                   get_selected_item)
 from game import all_items, all_enemies, battle_atk
 
 
@@ -77,10 +78,6 @@ def draw_input_atk(player):
     return draw_input_item_select(player, 'atacar')
 
 
-def draw_aurora_death(player):
-    pass
-
-
 # Input results functions
 
 
@@ -121,7 +118,7 @@ def draw_screen_counter(screen_count):
 def draw_bottom_level_bar():
     print('')
     print('X', '-'*50, 'X')
-    input('Avançar >>>')
+    return input('Avançar [ou "Q" para sair] >>>').upper()
 
 
 def print_level_lines(level_info, player, level_content, entry_point):
@@ -138,10 +135,12 @@ def print_level_lines(level_info, player, level_content, entry_point):
         if (line == '/start'):
             draw_top_level_bar(level_info, player)
             draw_screen_counter(screen_count)
-            screen_count += 1
             continue
         elif (line == '/stop'):
-            draw_bottom_level_bar()
+            action = draw_bottom_level_bar()
+            screen_count += 1
+            if (action == 'Q'):
+                break
             continue
         elif (line == '/get_name'):
             print(' '*2, player.name)
@@ -168,9 +167,13 @@ def print_level_lines(level_info, player, level_content, entry_point):
             enemy = all_enemies['/hero_daughter']
 
             draw_aurora_death(player, enemy)
+            continue
+        elif (line == '/end'):
+            return True
 
         print(line)
-
+        player.screens = screen_count
+    return False
 
 # Combat functions
 
@@ -214,5 +217,19 @@ def draw_battle_mode(player, enemy):
     print('X='*26 + 'X')
 
 
+def draw_aurora_death(player, enemy):
+    atk_item = get_selected_item(1, player)
+    aurora_new_hp, damage = battle_atk(player, enemy, atk_item.atk)
+
+    print('\nAcabe com o sofrimento! Aurora só tem 1 de hp,\né só um hit...')
+    input('Atacar >>>')
+
+    if (aurora_new_hp == 0):
+        print('='*54)
+        print(
+            f'\n\t\t{player.name} mata {enemy.name}\n\tempunhando sua lança no coração da filha!\n')
+        print('='*54)
+
+
 def init_level_interface(level_info, player, level_content, entry_point):
-    print_level_lines(level_info, player, level_content, entry_point)
+    return print_level_lines(level_info, player, level_content, entry_point)
