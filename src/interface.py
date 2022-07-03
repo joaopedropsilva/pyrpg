@@ -168,6 +168,7 @@ def print_level_lines(level_info, player, level_content, entry_point):
             continue
 
         print(line)
+        player.screens = screen_count
 
 
 # Combat functions

@@ -1,8 +1,0 @@
-heber
-100
-5
-5
-['Lança Hereditária']
-Stack([''])
-1
-lvl_0
