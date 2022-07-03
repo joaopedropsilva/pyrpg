@@ -1,3 +1,6 @@
+from time import sleep
+from turtle import clear
+
 from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST, DEFAULT_HERO_BELT_LENGTH
 from utils import (clear_screen, check_line_length,
                    check_inventory_state,
@@ -121,6 +124,14 @@ def draw_bottom_level_bar():
     return input('Avançar [ou "Q" para sair] >>>').upper()
 
 
+def draw_level_advance(level_number):
+    clear_screen()
+    print('X', '='*50, 'X')
+    print(f'\n\n\t\tCapítulo {level_number} alcançado!\n\n')
+    print('X', '='*50, 'X')
+    sleep(3)
+
+
 def print_level_lines(level_info, player, level_content, entry_point):
     screen_count = player.screens
 
@@ -178,6 +189,7 @@ def print_level_lines(level_info, player, level_content, entry_point):
         print(line)
 
     return False
+
 
 # Combat functions
 
