@@ -18,10 +18,23 @@ def timed_writing_animation(text, animation_speed=DEFAULT_ANIMATION_SPEED):
 
 
 def menu_transfer_animation():
-    pass
+    clear_screen()
+    animation = ['*'*25,'\n', "****[[[[[LOADING]]]]]****", '[-----------------------]']
+    for i in range(4):
+        timed_writing_animation(animation[0], 0.03)
+        timed_writing_animation(animation[1], 0.03)
 
+    timed_writing_animation(animation[2], 0.1)
+    timed_writing_animation(animation[1], 0.03)
+
+    for i in range(4):
+        timed_writing_animation(animation[0], 0.03)
+        timed_writing_animation(animation[1], 0.03)
+
+    timed_writing_animation(animation[3], 0.2)
 
 def creating_new_game_animation():
+    clear_screen()
     animation = [['HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'],
                  ['HHHHHHHHHHHHHHHHHHHHHHHHHHH|||||||||HHHHHHHHHHHHHHHHH\n'],
                  ['HHHHHHHHHHHHHHHHHHHHHH|||||||||||||||||||HHHHHHHHHHHH\n'],
