@@ -135,10 +135,12 @@ def print_level_lines(level_info, player, level_content, entry_point):
         if (line == '/start'):
             draw_top_level_bar(level_info, player)
             draw_screen_counter(screen_count)
+            player.screens = screen_count
+            screen_count += 1
             continue
         elif (line == '/stop'):
             action = draw_bottom_level_bar()
-            screen_count += 1
+
             if (action == 'Q'):
                 break
             continue
@@ -157,6 +159,10 @@ def print_level_lines(level_info, player, level_content, entry_point):
                 show_item_add_success(item, 'item_add_to_bag')
             elif (filter_return == 'item_add_to_belt'):
                 show_item_add_success(item, 'item_add_to_belt')
+
+            # might create a bug
+            player.screens = screen_count
+            screen_count += 1
             continue
         elif (line in ALL_ENEMIES_LIST):
             enemy = all_enemies[line]
@@ -172,7 +178,7 @@ def print_level_lines(level_info, player, level_content, entry_point):
             return True
 
         print(line)
-        player.screens = screen_count
+
     return False
 
 # Combat functions

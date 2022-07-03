@@ -25,7 +25,8 @@ def main():
             utl.autosave(level_info, player)
 
             if (level_status):
-                level_info = utl.change_level_procedure(level_info, player)
+                level_info = utl.change_level_info_procedure(
+                    level_info, player)
                 utl.autosave(level_info, player)
 
         elif (user_option == '2' and process_return != None):  # load game
@@ -38,8 +39,10 @@ def main():
             utl.autosave(level_info, player)
 
             if (level_status):
-                level_info = utl.change_level_procedure(level_info, player)
+                level_info = utl.change_level_info_procedure(
+                    level_info, player)
                 utl.autosave(level_info, player)
+                # TODO: interface function that transfers the level; change level animation
 
 
 if __name__ == '__main__':
