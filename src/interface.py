@@ -4,9 +4,10 @@ from turtle import clear
 from structures.game_constants import ALL_ENEMIES_LIST, ALL_ITEMS_LIST, DEFAULT_HERO_BELT_LENGTH
 from utils import (clear_screen, check_line_length,
                    check_inventory_state,
+                   check_item_in_inventory,
                    filter_inputs,
                    get_selected_item)
-from game import all_items, all_enemies, battle_atk
+from game import all_items, all_enemies, battle_atk, battle_healing
 
 
 # Input functions
@@ -52,9 +53,9 @@ def input_attempts(filter, player=None, bag_state=False):
                 continue
 
 
-def draw_input_item_select(player, reason):
+def draw_input_item_select(player):
     print('='*54)
-    print(f'Usar itens do cinto ou da mochila para {reason}')
+    print(f'Usar itens do cinto ou da mochila:')
     bag_repr, bag_state = check_inventory_state(player)
     print(f'CINTO: {player.belt} [1 ao 4]')
     print(f"MOCHILA: ['{bag_repr}'] [0]")
@@ -76,9 +77,9 @@ def draw_input_item_found_options(item):
 
 # Battle Mode input functions
 
-
+# TODO: DELETE THIS FUNCTION
 def draw_input_atk(player):
-    return draw_input_item_select(player, 'atacar')
+    return draw_input_item_select(player)
 
 
 # Input results functions
@@ -91,14 +92,24 @@ def show_item_add_success(item, flag):
         print(f'{item.name} adicionado ao cinto!')
 
 
-def show_atk_success(entity_one, entity_two, damage):
+def show_atk_success(entity_one, entity_two):
     print('='*54)
-    print(f'\n{entity_one.name} atacou {entity_two.name} com {damage} de dano!')
+    print(f'\n{entity_one.name} atacou {entity_two.name}!')
+    print(f'[{entity_one.name}] HP: {entity_one.hp}\n[{entity_two.name}] HP: {entity_two.hp}\n')
+    input('CONTINUAR >>>')
+
+
+def show_heal_success(entity_one, entity_two, item):
+    print('='*54)
+    print(f'\n{entity_one.name} se regenerou com {item.name}, +{item.hlg} HP!')
+    print(f'[{entity_one.name}] HP: {entity_one.hp} [{entity_two.name}] HP: {entity_two.hp}\n')
+    input('CONTINUAR >>>')
 
 
 def show_battle_end(entity_one, entity_two):
     print('='*54)
-    print(f'\n{entity_one.name} finalizou {entity_two.name}!')
+    print(f'\n\t{entity_one.name} finalizou {entity_two.name}!\n')
+    input('CONTINUAR >>>')
 
 
 # Level functions
@@ -121,7 +132,7 @@ def draw_screen_counter(screen_count):
 def draw_bottom_level_bar():
     print('')
     print('X', '-'*50, 'X')
-    return input('Avançar [ou "Q" para sair] >>>').upper()
+    return input('AVANÇAR [OU "Q" PARA SAIR] >>>').upper()
 
 
 def draw_level_advance(level_number):
@@ -209,23 +220,33 @@ def draw_battle_mode(player, enemy):
     winner = False
     while not (winner):
         if (entity_one == player):
-            user_input = draw_input_atk(entity_one)
-            atk_item = filter_inputs(user_input, entity_one)
+            user_input = draw_input_item_select(entity_one)
+            item, itention = filter_inputs(user_input, entity_one)
 
-            entity_two_new_hp, damage = battle_atk(
-                entity_one, entity_two, atk_item.atk)
+            if (itention == 'atk'):
+                entity_two_new_hp = battle_atk(
+                    entity_one, entity_two, item.atk)
+
+                entity_two.hp = entity_two_new_hp - int(entity_two.dfs)
+                if (entity_two.hp > 0):
+                    show_atk_success(entity_one, entity_two)
+                pass
+            elif (itention == 'heal'):
+                entity_one.hp = battle_healing(entity_one.hp, item.hlg)
+                check_item_in_inventory(entity_one, item)
+
+                show_heal_success(entity_one, entity_two, item)
         else:
-            entity_two_new_hp, damage = battle_atk(
-                entity_one, entity_two)
+            entity_two_new_hp = battle_atk(entity_one, entity_two)
 
-        entity_two.hp = entity_two_new_hp - int(entity_two.dfs)
+            entity_two.hp = entity_two_new_hp - int(entity_two.dfs)
+            show_atk_success(entity_one, entity_two)
 
-        if (entity_two_new_hp == 0):
+        # Check winner
+        if (entity_two.hp <= 0):
             winner = True
             show_battle_end(entity_one, entity_two)
             enemy.hp = entity_two_default_hp
-        else:
-            show_atk_success(entity_one, entity_two, damage)
 
         entity_one, entity_two = entity_two, entity_one
 
@@ -235,7 +256,7 @@ def draw_battle_mode(player, enemy):
 
 def draw_aurora_death(player, enemy):
     atk_item = get_selected_item(1, player)
-    aurora_new_hp, damage = battle_atk(player, enemy, atk_item.atk)
+    aurora_new_hp = battle_atk(player, enemy, atk_item.atk)
 
     print('\nAcabe com o sofrimento! Aurora só tem 1 de hp,\né só um hit...')
     input('Atacar >>>')

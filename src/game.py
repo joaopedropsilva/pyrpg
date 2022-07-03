@@ -103,9 +103,9 @@ deer = Enemy('Veado', 10, 0, 0)
 
 full_moon_god = Enemy('Xaaron, Deus-Lua', 200, 100, 1000)
 sun_goddess = Enemy('Hemera, Deusa-Sol', 1000, 1000, 1000)
-new_moon_princess = Enemy('Nice, Princesa da Lua Nova', 40, 20, 10)
-crescent_moon_prince = Enemy('Phobos, Príncipe da Lua Crescente', 75, 20, 20)
-waning_moon_prince = Enemy('Deimos, Príncipe da Lua Minguante', 100, 15, 15)
+new_moon_princess = Enemy('Nice, a Lua Nova', 40, 20, 10)
+crescent_moon_prince = Enemy('Phobos, a Lua Crescente', 75, 20, 20)
+waning_moon_prince = Enemy('Deimos, a Lua Minguante', 100, 15, 15)
 
 
 all_items = {'/dagger_initial': dagger_initial,
@@ -141,14 +141,11 @@ def battle_atk(entity_one, entity_two, item_atk=0):
     else:
         entity_two_new_hp = entity_two_total_defense - entity_one_damage_given
 
-    return entity_two_new_hp, entity_one_damage_given
+    return entity_two_new_hp
 
 
 def battle_healing(hp, healing_item):
-
-    new_HP = hp + healing_item
-
-    return new_HP
+    return hp + healing_item
 
 
 def final_battle(HP, ATK, defense, player):

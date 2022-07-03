@@ -2,5 +2,41 @@ lvl_1
 1
 Capítulo 1
 /start
-Começo do level 1
+O herói adentra o castelo. Suas paredes, feitas com pedras da lua, absorviam a luz natural do 
+corpo celeste e refletiam em tons de prata com um brilho suave, até mesmo a grama do grande 
+jardim central parecia reluzir. 
+O herói encontra uma caixa de ferramentas,
+provavelmente o jardineiro a esquecera durante o dia.
+/grass_fork_common
+/stop
+/start
+O herói observa as belíssimas flores lunares, muito abertas. Suas cinco pétalas estendiam-se
+de forma delicada, acompanhando o movimento da lua no céu. Seu olhar paira sobre uma estátua,
+branca como mármore.
+Ela era famosa. A grande e bondosa princesa da noite: Nice, a Lua Nova. Um ódio fatal toma
+conta de seus membros, seu coração palpitava chamas e em sua cabeça, a cena de sua família
+feita estátua de cinzas, o fez abominar aquela estrutura.
+/stop
+/start
+A fim de destruí-la, o nosso herói marcha apressadamente, brandindo sua arma. Uma flecha,
+vinda de algum lugar desconhecido partiu-se à frente dele. Uma voz feminina alarmada, ecoou pelo jardim:
+- Se prezas por tua vida, retira-te!
+- Covarde! Seria elogio chamar-te de vaca, sua vadia! Apareça, ou tens medo de um camponês?
+Não foi o que mostraram ao atacar a minha vila! Ao queimar minha família! - gritou ele em plenos pulmões.
+- Mais uma entre várias. E você, mais um louco entre vários que morreram tentando nos
+derrubar! - retrucou ela, saindo das sombras - Agora deixe-me terminar com isso de forma rápida e limpa…
+/stop
+/start
+- Isto terminará com um corpo desfigurado! Você! - Respondeu ele, posicionando-se para o combate.
+/new_moon_princess
+/stop
+/start
+Com um arma cravada em seu estômago, contra a sua estátua, a princesa clama piedade, alegando:
+- Eu nunca fiz nada, eu nunca ataquei as vilas, meus irmãos… eles sentiam prazer, eu apenas
+observava, porque não poderia questioná-los! Poupe-me! Por favor! - gritava Nice aos berros.
+- Você paga pelos pecados de sua família! Minha família não foi poupada. Então cale-se!
+A justiça do Sol cairá sobre ti! - Respondeu ele, revelando a pedra do sol.
+Os olhos da princesa argentina se arregalaram. Seu corpo começou a perder o brilho e de seus
+ferimentos começou a escorrer um líquido dourado e espesso, suas lágrimas caíam misturadas
+com seu sangue. E ela se esvaía, lentamente e aos berros.
 /stop
