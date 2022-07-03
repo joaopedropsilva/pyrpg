@@ -206,6 +206,7 @@ def check_line_length(line):
 
 # Change level functions
 
+
 def get_next_level(level_info):
     level_code_text = level_info.level_code[:4]
     level_code_number = int(level_info.level_code[-1])

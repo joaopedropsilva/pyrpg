@@ -160,9 +160,7 @@ def print_level_lines(level_info, player, level_content, entry_point):
             elif (filter_return == 'item_add_to_belt'):
                 show_item_add_success(item, 'item_add_to_belt')
 
-            # might create a bug
             player.screens = screen_count
-            screen_count += 1
             continue
         elif (line in ALL_ENEMIES_LIST):
             enemy = all_enemies[line]

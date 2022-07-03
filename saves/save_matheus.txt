@@ -1,8 +1,0 @@
-matheus
-100
-5
-5
-['Lança Hereditária', 'Carne Crua', 'Pedra do Sol']
-Stack([''])
-1
-lvl_1

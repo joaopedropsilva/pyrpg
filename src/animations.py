@@ -1,6 +1,7 @@
 from time import sleep
 from sys import stdout
 import keyboard as kb
+from utils import clear_screen
 
 from structures.game_constants import DEFAULT_ANIMATION_SPEED
 
@@ -26,4 +27,14 @@ def creating_new_game_animation():
 
 
 def loading_game_animation():
-    pass
+    clear_screen()
+    animacao = ['\\'*52,'\n', '//'*26, '\n']
+    
+    barra = ['/'*10,' '*10, "[",'-'*10, ' '*0 , "]",' '*10, '\\'*10, '\n']
+    timed_writing_animation(animacao*5, 0.2)
+    for i in range(len(barra)):
+            if i == 3:
+                timed_writing_animation(barra[i], 0.5)
+            else : timed_writing_animation(barra[i], 0.1)
+
+    timed_writing_animation(animacao*5, 0.2)
