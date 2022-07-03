@@ -19,26 +19,27 @@ def main():
             level_info, player, level_content = utl.init_level(
                 process_return, False)
             entry_point = utl.get_entry_point_to_level(level_info, player)
-            level_status = interf.init_level_interface(
+            level_advance_status = interf.init_level_interface(
                 level_info, player, level_content, entry_point)
 
             utl.autosave(level_info, player)
 
-            if (level_status):
+            if (level_advance_status):
                 level_info = utl.change_level_info_procedure(
                     level_info, player)
                 utl.autosave(level_info, player)
+                # TODO: interface function that transfers the level; change level animation
 
         elif (user_option == '2' and process_return != None):  # load game
             level_info, player, level_content = utl.init_level(
                 process_return, True)
             entry_point = utl.get_entry_point_to_level(level_info, player)
-            level_status = interf.init_level_interface(
+            level_advance_status = interf.init_level_interface(
                 level_info, player, level_content, entry_point)
 
             utl.autosave(level_info, player)
 
-            if (level_status):
+            if (level_advance_status):
                 level_info = utl.change_level_info_procedure(
                     level_info, player)
                 utl.autosave(level_info, player)
