@@ -50,7 +50,8 @@ que manteve-se com um sorriso de escárnio. Saiu por entre os buracos, que sincr
 /start
 - Por favor pai… faça parar de doer - e logo em seguida um gemido de prazer e uma gargalhada 
 obscura, macabra e mais blasfêmica que nosso herói já ouvira em sua miserável vida.
-Tomado por um brilho rubro, nosso herói começou a tremer de pura raiva, partindo para o ataque, sem transmitir um sentimento de medo ou misericórdia, apenas a ira.
+Tomado por um brilho rubro, nosso herói começou a tremer de pura raiva, partindo 
+para o ataque, sem transmitir um sentimento de medo ou misericórdia, apenas a ira.
 /crescent_moon_prince
 /stop
 /start
@@ -62,7 +63,8 @@ medo estava paralizado pela própria amante, o medo, o veneno o qual destilava e
 seus inimigos: o horror da morte.
 /stop
 /start
-Quando finalmente o coração apareceu diante do nosso corajoso herói, este penetrou-o com sua lança. Fazendo seu sangue rubro-áureo espirrasse por toda a sala. 
+Quando finalmente o coração apareceu diante do nosso corajoso herói, este penetrou-o com sua 
+lança. Fazendo seu sangue rubro-áureo espirrasse por toda a sala. 
 Com a morte do Príncipe da Lua Crescente, todos os espelhos da sala se partiram. Relevando
 o caminho para a sala do trono. O momento chegou.
 /stop

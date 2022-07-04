@@ -47,5 +47,46 @@ que encontrava-se no meio termo de ódio e medo.
 /stop
 /start
 /final_battle
+/start
+Com o grandioso rei da Lua aos seus pés, amedrontado, com o rosto marcado com um sangue prateado
+que escorria pelos seus cabelos. Seu rosto, agora desfigurado pelos socos que tomara, estava
+inchado, latejante e aludia à covardia. Afastando-se do nosso irado herói, ele equilibrou-se
+no trono, clamando misericórdia, enquanto vertia lágrimas azuis como lápis-lazúli de seus olhos.
 /stop
-/end
+/start
+Ainda em um frenesi absurdo, o campeão da deusa aproxima-se dele, com um olhar maníaco.
+Seu sangue evaporava por seus poros, suas pupilas estavam extremamente dilatadas. Ele segura o
+rei com uma das mãos em seu ombro, como se em um gesto amistoso, fazendo-o relaxar por um
+milionésimo de segundo, e naquela fração ter a esperança de que tudo ficaria bem. Até que a
+segunda mão veio, atravessando-o no peito e arrancando seu coração, azul, pulsátil e que
+sangrava em cores de prata, para fora.
+/stop
+/start
+Contemplando o seu prêmio magnum, ele o devora ferozmente, sem pensar, atacado por um puro
+acesso de sede e fome voraz. O rei, ainda vivo, observa a cena em puro terror,
+enquanto cai aos pés de seu trono.
+A aura passou. O sentimento de ódio, de revolta, de agonia e tudo o que acontecera simplesmente acabou.
+Um sentimento de paz o dominou por completo… até que sentiu seu estômago vibrar.
+A aura avermelhada retornou, mas desta vez, uma azulada apareceu junto. Elas duelavam entre si,
+e o fruto de seus impactos obliteravam partes do corpo do herói. Até que este sumiu por
+completo, em um grande feixe de luz. Ninguém nunca mais ouviu falar no herói 
+/get_name
+/stop
+/start
+Epílogo:
+[Bardo]
+“Na noite citada,
+A lua virou cilada,
+O eclipse surgiu
+E do nosso herói…
+Nunca mais se ouviu.
+Paguem-me as bebidas,
+Dêem-me moedas!
+Ofertei vidas bem vividas,
+Que não conto como estas.
+Boa noite, marcada
+Com morte e com fogo,
+Boa noite, camarada.
+Aqui se encerra nosso jogo!”
+/stop
+/end_game

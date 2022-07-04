@@ -57,9 +57,9 @@ def draw_input_item_select(player):
     print('='*54)
     print(f'Usar itens do cinto ou da mochila:')
     bag_repr, bag_state = check_inventory_state(player)
-    print(f'CINTO: {player.belt} [1 ao 4]')
+    print(f'CINTO: {player.belt} [1 ao 5]')
     print(f"MOCHILA: ['{bag_repr}'] [0]")
-    print('Qual item deseja selecionar? [1 ao 4] ou [0]')
+    print('Qual item deseja selecionar? [1 ao 5] ou [0]')
     return (input_attempts('interact', player, bag_state), 'item_select')
 
 
@@ -73,13 +73,6 @@ def draw_input_item_found_options(item):
                 [Peso] -> {item.weight} kg''')
     print('O que deseja fazer? [1] Pegar [2] Ignorar')
     return (input_attempts('decide'), 'item_found_options')
-
-
-# Battle Mode input functions
-
-# TODO: DELETE THIS FUNCTION
-def draw_input_atk(player):
-    return draw_input_item_select(player)
 
 
 # Input results functions
@@ -187,7 +180,9 @@ def print_level_lines(level_info, player, level_content, entry_point):
         elif (line in ALL_ENEMIES_LIST):
             enemy = all_enemies[line]
 
-            draw_battle_mode(player, enemy)
+            battle_results = draw_battle_mode(player, enemy)
+            if (battle_results is False):
+                return False
             continue
         elif (line == '/aurora_death'):
             enemy = all_enemies['/hero_daughter']
@@ -196,6 +191,14 @@ def print_level_lines(level_info, player, level_content, entry_point):
             continue
         elif (line == '/end'):
             return True
+        elif (line == '/final_battle'):
+            player.hp = 0
+            draw_final_battle(player)
+            continue
+        elif (line == '/end_game'):
+            clear_screen()
+            draw_end_game_screen()
+            return 'end_game'
 
         print(line)
 
@@ -216,7 +219,8 @@ def draw_battle_mode(player, enemy):
 
     entity_one = player
     entity_two = enemy
-    entity_two_default_hp = int(enemy.hp)
+    player_default_hp = int(player.hp)
+    enemy_default_hp = int(enemy.hp)
     winner = False
     while not (winner):
         if (entity_one == player):
@@ -246,12 +250,24 @@ def draw_battle_mode(player, enemy):
         if (entity_two.hp <= 0):
             winner = True
             show_battle_end(entity_one, entity_two)
-            enemy.hp = entity_two_default_hp
+            if (entity_two == player and enemy.name != 'Xaaron, Deus-Lua'):
+                player.hp = player_default_hp
+                enemy.hp = enemy_default_hp
+                return False
+            enemy.hp = enemy_default_hp
 
         entity_one, entity_two = entity_two, entity_one
 
     print('')
     print('X='*26 + 'X')
+
+
+def draw_final_battle(player):
+    print('X', '='*50, 'X')
+    print('\t\tBATALHA FINAL\n\n')
+    print(f'{player.name} agora está no modo berserker e se recusa a morrer!')
+    print('Os esforços do Deus-Lua não são mais suficientes,\nSeu ataque efetivo cai para 0 de dano\nNada mais para o herói...')
+    input('\n\nFinalizar Xaaron >>>')
 
 
 def draw_aurora_death(player, enemy):
@@ -266,6 +282,16 @@ def draw_aurora_death(player, enemy):
         print(
             f'\n\t\t{player.name} mata {enemy.name}\n\tempunhando sua lança no coração da filha!\n')
         print('='*54)
+
+
+# End game
+
+
+def draw_end_game_screen():
+    print('X', '-'*26, 'X', '\n')
+    print(' '*9, 'FIM DE JOGO', '\n')
+    print('X', '-'*26, 'X', '\n')
+    sleep(5)
 
 
 def init_level_interface(level_info, player, level_content, entry_point):
