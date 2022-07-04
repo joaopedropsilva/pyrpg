@@ -101,11 +101,11 @@ spare_initial = Item('Lança Hereditária', 2, 0, 0, 1.05)
 raw_flesh_initial = Item('Carne Crua', 0, 0, 5, 1)
 sun_stone_initial = Item('Pedra do Sol', 50, 0, 100, 0.2)
 
-iron_spare_common = Item('Lança de Ferro', 10, 0, 0, 2.25)
-fruits_common = Item('Frutas', 0, 0, 5, 0.1)
+iron_spare_common = Item('Lança de Ferro', 25, 0, 0, 2.25)
+fruits_common = Item('Frutas', 0, 0, 15, 0.1)
 grass_fork_common = Item('Forcado', 8, 0, 0, 1.25)
 
-imperial_halberd_rare = Item('Alabarda do Exército Imperial', 25, 0, 0, 4)
+imperial_halberd_rare = Item('Alabarda do Exército Imperial', 35, 0, 0, 4)
 meat_stew_rare = Item('Ensopado de Carne', 0, 0, 25, 0.65)
 
 nectar_ambrosia_divine = Item('Néctar e Ambrósia', 0, 0, 50, 0.15)
@@ -120,8 +120,8 @@ deer = Enemy('Veado', 10, 0, 0)
 full_moon_god = Enemy('Xaaron, Deus-Lua', 200, 100, 1000)
 sun_goddess = Enemy('Hemera, Deusa-Sol', 1000, 1000, 1000)
 new_moon_princess = Enemy('Nice, a Lua Nova', 40, 20, 10)
-crescent_moon_prince = Enemy('Phobos, a Lua Crescente', 75, 20, 20)
-waning_moon_prince = Enemy('Deimos, a Lua Minguante', 100, 15, 15)
+crescent_moon_prince = Enemy('Phobos, a Lua Crescente', 75, 15, 15)
+waning_moon_prince = Enemy('Deimos, a Lua Minguante', 75, 10, 10)
 
 
 all_items = {'/dagger_initial': dagger_initial,
@@ -161,7 +161,7 @@ def battle_atk(entity_one, entity_two, item_atk=0):
 
 
 def battle_healing(hp, healing_item):
-    return hp + healing_item
+    return int(hp) + int(healing_item)
 
 
 def final_battle(HP, ATK, defense, player):

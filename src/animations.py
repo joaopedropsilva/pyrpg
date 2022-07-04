@@ -19,7 +19,8 @@ def timed_writing_animation(text, animation_speed=DEFAULT_ANIMATION_SPEED):
 
 def menu_transfer_animation():
     clear_screen()
-    animation = ['*'*25,'\n', "****[[[[[LOADING]]]]]****", '[-----------------------]']
+    animation = ['*'*25, '\n', "****[[[[[LOADING]]]]]****",
+                 '[-----------------------]']
     for i in range(4):
         timed_writing_animation(animation[0], 0.03)
         timed_writing_animation(animation[1], 0.03)
@@ -32,6 +33,7 @@ def menu_transfer_animation():
         timed_writing_animation(animation[1], 0.03)
 
     timed_writing_animation(animation[3], 0.2)
+
 
 def creating_new_game_animation():
     clear_screen()
@@ -51,11 +53,12 @@ def creating_new_game_animation():
                  ['HHHHHHHHHHHHHHHHHH||||||||||HHHHHHHHH||||||HHHHHHHHHH\n'],
                  ['HHHHHHHHHHHHHHHHHHHHHH|||||||||||||||||||HHHHHHHHHHHH\n'],
                  ['HHHHHHHHHHHHHHHHHHHHHHHHH|||||||||||HHHHHHHHHHHHHHHHH\n'],
-                 ['HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n'] ]
-    
+                 ['HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n']]
+
     for i in range(len(animation)):
-        
+
         timed_writing_animation(animation[i], 0.1)
+    sleep(2)
 
 
 def level_advance_animation(level_info):
