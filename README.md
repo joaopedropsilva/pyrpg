@@ -1,4 +1,4 @@
-# pyRPG
+# pyrpg
 
 # Ode ao Aether: o primeiro eclipse
 
